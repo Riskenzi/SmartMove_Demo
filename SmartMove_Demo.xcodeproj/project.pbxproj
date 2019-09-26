@@ -120,16 +120,8 @@
 			children = (
 				F4040B7F233B56C8009D3F3C /* point.json */,
 				F4040B7B233B5040009D3F3C /* mapstyle.json */,
-				F4040B82233B58F3009D3F3C /* jsonLoader */,
 			);
 			path = jsonFile;
-			sourceTree = "<group>";
-		};
-		F4040B82233B58F3009D3F3C /* jsonLoader */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = jsonLoader;
 			sourceTree = "<group>";
 		};
 		F4040B85233B8024009D3F3C /* DataManager */ = {

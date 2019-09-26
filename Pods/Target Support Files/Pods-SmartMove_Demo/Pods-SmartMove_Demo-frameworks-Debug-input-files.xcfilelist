@@ -1,2 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-SmartMove_Demo/Pods-SmartMove_Demo-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/MapKitGoogleStyler/MapKitGoogleStyler.framework
+${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework

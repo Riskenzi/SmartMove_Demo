@@ -9,4 +9,6 @@ target 'SmartMove_Demo' do
     pod 'MapKitGoogleStyler'
     pod 'GoogleMaps'
     pod 'GooglePlaces'
+    pod 'SwiftyJSON'
+    pod 'Alamofire'
 end

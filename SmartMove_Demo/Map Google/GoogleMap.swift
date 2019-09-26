@@ -8,12 +8,15 @@
 
 import UIKit
 import GoogleMaps
-
+import SwiftyJSON
+import Alamofire
 class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
     
     @IBOutlet weak var mapView: GMSMapView!
     var locationManager = CLLocationManager()
     let MapApple : Map = Map()
+    var polyline : GMSPolyline? = nil
+    var circle : GMSCircle? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         MapApple.loadJsonFile()
@@ -67,8 +70,11 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         mapView.selectedMarker = marker
-        print("user tabed car from id :",marker.userData )
-        
+        print("user tabed car from id :",marker.userData as! String)
+        let userPosition = locationManager.location?.coordinate
+        let poinPosition = marker.position
+    
+        draw(src: userPosition!, dst: poinPosition)
         return true
     }
     
@@ -96,6 +102,48 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
           func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
               print("Unable to access your current location")
           }//current location user
+  
+    func draw(src: CLLocationCoordinate2D, dst: CLLocationCoordinate2D){
+
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+
+        let url = URL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=\(src.latitude),\(src.longitude)&destination=\(dst.latitude),\(dst.longitude)&sensor=false&mode=walking&key=AIzaSyDNaomwPpfEWP5YIwuK74m8-DNog7v5gho")!
+
+        let task = session.dataTask(with: url, completionHandler: {
+            (data, response, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            } else {
+                do {
+                    if let json : [String:Any] = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any] {
+
+                        let preRoutes = json["routes"] as! NSArray
+                        let routes = preRoutes[0] as! NSDictionary
+                        let routeOverviewPolyline:NSDictionary = routes.value(forKey: "overview_polyline") as! NSDictionary
+                        let polyString = routeOverviewPolyline.object(forKey: "points") as! String
+
+                        DispatchQueue.main.async(execute: {
+                            let path = GMSPath(fromEncodedPath: polyString)
+                            self.polyline?.map = nil
+                            self.polyline = GMSPolyline(path: path)
+                            self.polyline?.strokeWidth = 5.0
+                            self.polyline?.strokeColor = UIColor.blue
+                            self.polyline?.map = self.mapView
+                            
+                            
+                        })
+                    }
+
+                } catch {
+                    print("parsing error")
+                }
+            }
+        })
+        task.resume()
+    }
+    
+
     /*
     // MARK: - Navigation
 
