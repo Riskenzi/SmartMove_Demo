@@ -1,6 +1,14 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
+## GoogleMaps
+
+Copyright 2019 Google
+
+## GooglePlaces
+
+Copyright 2019 Google
+
 ## MapKitGoogleStyler
 
 Copyright (c) 2017 fmo91 <ortizfernandomartin@gmail.com>

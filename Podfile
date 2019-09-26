@@ -7,4 +7,6 @@ target 'SmartMove_Demo' do
 
   # Pods for SmartMove_Demo
     pod 'MapKitGoogleStyler'
+    pod 'GoogleMaps'
+    pod 'GooglePlaces'
 end

@@ -21,6 +21,8 @@
 		F4040B84233B65DB009D3F3C /* PinLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4040B83233B65DB009D3F3C /* PinLocations.swift */; };
 		F4040B87233B8034009D3F3C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4040B86233B8034009D3F3C /* DataManager.swift */; };
 		F4040B89233B976C009D3F3C /* CarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4040B88233B976C009D3F3C /* CarItem.swift */; };
+		F4EF004F233CC69400F3E4F9 /* GoogleMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF004E233CC69400F3E4F9 /* GoogleMap.swift */; };
+		F4EF0051233CCDE000F3E4F9 /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = F4EF0050233CCDE000F3E4F9 /* style.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		F4040B83233B65DB009D3F3C /* PinLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinLocations.swift; sourceTree = "<group>"; };
 		F4040B86233B8034009D3F3C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		F4040B88233B976C009D3F3C /* CarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarItem.swift; sourceTree = "<group>"; };
+		F4EF004E233CC69400F3E4F9 /* GoogleMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMap.swift; sourceTree = "<group>"; };
+		F4EF0050233CCDE000F3E4F9 /* style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +90,9 @@
 			isa = PBXGroup;
 			children = (
 				F4040B85233B8024009D3F3C /* DataManager */,
+				F4EF004D233CC46B00F3E4F9 /* Map Google */,
 				F4040B81233B58DD009D3F3C /* jsonFile */,
-				F4040B76233B496E009D3F3C /* Map */,
+				F4040B76233B496E009D3F3C /* Map Apple */,
 				F4040B62233B4899009D3F3C /* AppDelegate.swift */,
 				F4040B66233B4899009D3F3C /* ViewController.swift */,
 				F4040B68233B4899009D3F3C /* Main.storyboard */,
@@ -99,7 +104,7 @@
 			path = SmartMove_Demo;
 			sourceTree = "<group>";
 		};
-		F4040B76233B496E009D3F3C /* Map */ = {
+		F4040B76233B496E009D3F3C /* Map Apple */ = {
 			isa = PBXGroup;
 			children = (
 				F4040B77233B4A6A009D3F3C /* Map.swift */,
@@ -107,7 +112,7 @@
 				F4040B83233B65DB009D3F3C /* PinLocations.swift */,
 				F4040B88233B976C009D3F3C /* CarItem.swift */,
 			);
-			path = Map;
+			path = "Map Apple";
 			sourceTree = "<group>";
 		};
 		F4040B81233B58DD009D3F3C /* jsonFile */ = {
@@ -135,6 +140,15 @@
 			path = DataManager;
 			sourceTree = "<group>";
 		};
+		F4EF004D233CC46B00F3E4F9 /* Map Google */ = {
+			isa = PBXGroup;
+			children = (
+				F4EF004E233CC69400F3E4F9 /* GoogleMap.swift */,
+				F4EF0050233CCDE000F3E4F9 /* style.json */,
+			);
+			path = "Map Google";
+			sourceTree = "<group>";
+		};
 		F7208ADB4673BB0FB54C91A0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +170,7 @@
 				F4040B5C233B4899009D3F3C /* Frameworks */,
 				F4040B5D233B4899009D3F3C /* Resources */,
 				0F7273BDB99525F0DDAE14AB /* [CP] Embed Pods Frameworks */,
+				DFBE1ACBD27440E7BD000518 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -204,6 +219,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4EF0051233CCDE000F3E4F9 /* style.json in Resources */,
 				F4040B7C233B5040009D3F3C /* mapstyle.json in Resources */,
 				F4040B80233B56C8009D3F3C /* point.json in Resources */,
 				F4040B6F233B489B009D3F3C /* LaunchScreen.storyboard in Resources */,
@@ -254,6 +270,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DFBE1ACBD27440E7BD000518 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SmartMove_Demo/Pods-SmartMove_Demo-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SmartMove_Demo/Pods-SmartMove_Demo-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SmartMove_Demo/Pods-SmartMove_Demo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -265,6 +298,7 @@
 				F4040B7E233B55B6009D3F3C /* MapPin.swift in Sources */,
 				F4040B89233B976C009D3F3C /* CarItem.swift in Sources */,
 				F4040B84233B65DB009D3F3C /* PinLocations.swift in Sources */,
+				F4EF004F233CC69400F3E4F9 /* GoogleMap.swift in Sources */,
 				F4040B87233B8034009D3F3C /* DataManager.swift in Sources */,
 				F4040B63233B4899009D3F3C /* AppDelegate.swift in Sources */,
 				F4040B78233B4A6A009D3F3C /* Map.swift in Sources */,
