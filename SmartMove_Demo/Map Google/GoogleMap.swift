@@ -15,8 +15,7 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
     @IBOutlet weak var mapView: GMSMapView!
     var locationManager = CLLocationManager()
     let MapApple : Map = Map()
-    var polyline : GMSPolyline? = nil
-    var circle : GMSCircle? = nil
+    private var polylineArray:[GMSCircle] = [GMSCircle]() //global variable
     override func viewDidLoad() {
         super.viewDidLoad()
         MapApple.loadJsonFile()
@@ -75,6 +74,8 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         let poinPosition = marker.position
     
         draw(src: userPosition!, dst: poinPosition)
+        
+        //callingDistanceAPI(src: userPosition!, dst: poinPosition)
         return true
     }
     
@@ -124,14 +125,7 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                         let polyString = routeOverviewPolyline.object(forKey: "points") as! String
 
                         DispatchQueue.main.async(execute: {
-                            let path = GMSPath(fromEncodedPath: polyString)
-                            self.polyline?.map = nil
-                            self.polyline = GMSPolyline(path: path)
-                            self.polyline?.strokeWidth = 5.0
-                            self.polyline?.strokeColor = UIColor.blue
-                            self.polyline?.map = self.mapView
-                            
-                            
+                            self.showPath(polyStr: polyString)
                         })
                     }
 
@@ -143,7 +137,61 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         task.resume()
     }
     
+    //MARK: Draw polyline
 
+    func showPath(polyStr :String) {
+        guard let path = GMSMutablePath(fromEncodedPath: polyStr) else {return}
+        //MARK: remove the old polyline from the GoogleMap
+        self.removePolylinePath()
+
+        let intervalDistanceIncrement: CGFloat = 10
+        let circleRadiusScale = 1 / mapView.projection.points(forMeters: 1, at: mapView.camera.target)
+        var previousCircle: GMSCircle?
+        for coordinateIndex in 0 ..< path.count() - 1 {
+            let startCoordinate = path.coordinate(at: coordinateIndex)
+            let endCoordinate = path.coordinate(at: coordinateIndex + 1)
+            let startLocation = CLLocation(latitude: startCoordinate.latitude, longitude: startCoordinate.longitude)
+            let endLocation = CLLocation(latitude: endCoordinate.latitude, longitude: endCoordinate.longitude)
+            let pathDistance = endLocation.distance(from: startLocation)
+            let intervalLatIncrement = (endLocation.coordinate.latitude - startLocation.coordinate.latitude) / pathDistance
+            let intervalLngIncrement = (endLocation.coordinate.longitude - startLocation.coordinate.longitude) / pathDistance
+            for intervalDistance in 0 ..< Int(pathDistance) {
+                let intervalLat = startLocation.coordinate.latitude + (intervalLatIncrement * Double(intervalDistance))
+                let intervalLng = startLocation.coordinate.longitude + (intervalLngIncrement * Double(intervalDistance))
+                let circleCoordinate = CLLocationCoordinate2D(latitude: intervalLat, longitude: intervalLng)
+                if let previousCircle = previousCircle {
+                    let circleLocation = CLLocation(latitude: circleCoordinate.latitude,
+                                                    longitude: circleCoordinate.longitude)
+                    let previousCircleLocation = CLLocation(latitude: previousCircle.position.latitude,
+                                                            longitude: previousCircle.position.longitude)
+                    if mapView.projection.points(forMeters: circleLocation.distance(from: previousCircleLocation),
+                                                 at: mapView.camera.target) < intervalDistanceIncrement {
+                        continue
+                    }
+                }
+                let circleRadius = 3 * CLLocationDistance(circleRadiusScale)
+                let circle = GMSCircle(position: circleCoordinate, radius: circleRadius)
+                circle.strokeWidth = 1.0
+                circle.strokeColor = UIColor.blue
+                circle.fillColor = UIColor.blue
+                circle.map = mapView
+                circle.userData = "root"
+                polylineArray.append(circle)
+                previousCircle = circle
+            }
+        }
+    }
+
+
+        //MARK: - Removing dotted polyline
+        func removePolylinePath() {
+        for root: GMSCircle in self.polylineArray {
+            if let userData = root.userData as? String,
+                userData == "root" {
+                root.map = nil
+            }
+        }
+    }
     /*
     // MARK: - Navigation
 
