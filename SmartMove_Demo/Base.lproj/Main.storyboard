@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fku-73-6Rh">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SmartMove_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="123"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="jkX-GN-5OH">
+            <objects>
+                <viewController storyboardIdentifier="MapVC" id="Fku-73-6Rh" customClass="Map" customModule="SmartMove_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LmC-ux-oJv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zGC-7u-hHU">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="z9F-rg-R1L" firstAttribute="bottom" secondItem="zGC-7u-hHU" secondAttribute="bottom" id="lAK-Tv-xkE"/>
+                            <constraint firstItem="z9F-rg-R1L" firstAttribute="trailing" secondItem="zGC-7u-hHU" secondAttribute="trailing" id="s6D-7R-37T"/>
+                            <constraint firstItem="zGC-7u-hHU" firstAttribute="top" secondItem="z9F-rg-R1L" secondAttribute="top" id="sT7-Pv-0IE"/>
+                            <constraint firstItem="zGC-7u-hHU" firstAttribute="leading" secondItem="z9F-rg-R1L" secondAttribute="leading" id="wKJ-58-T6i"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="z9F-rg-R1L"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="zGC-7u-hHU" id="yp2-Ap-bPz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bCr-If-XDn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="820" y="116"/>
+        </scene>
+    </scenes>
+</document>

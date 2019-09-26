@@ -1,0 +1,64 @@
+[{
+    "name": "SmartCar",
+    "favouriteArtist": "The Game",
+    "coordinate_latitude":  48.02102 ,
+    "coordinate_longitude" : 37.80048 ,
+    "CarID" : "1"
+},
+{
+    "name": "SmartCar",
+    "favouriteArtist": "N.W.A.",
+    "coordinate_latitude" :   48.01890 ,
+    "coordinate_longitude" :37.80173 ,
+    "CarID" : "2"
+},
+{
+    "name": "SmartCar",
+    "favouriteArtist": "YG",
+    "coordinate_latitude":  48.02346 ,
+    "coordinate_longitude" :37.79477 ,
+    "CarID" : "3"
+},
+{
+    "name": "SmartCar",
+    "favouriteArtist": "Danny Brown",
+    "coordinate_latitude":  48.02725 ,
+    "coordinate_longitude" :37.79726 ,
+    "CarID" : "4"
+},
+{
+    "name": "SmartCar",
+    "favouriteArtist": "Royce da 5'9\"",
+    "coordinate_latitude":   48.02590 ,
+    "coordinate_longitude" :37.80031 ,
+    "CarID" : "5"
+},
+{
+    "name": "SmartCar",
+    "favouriteArtist": "Run the Jewels",
+    "coordinate_latitude":  48.02263 ,
+    "coordinate_longitude" :37.80430 ,
+    "CarID" : "6"
+},
+{
+    "name": "SmartCar",
+    "favouriteArtist": "Eminem",
+    "coordinate_latitude":  48.02491 ,
+    "coordinate_longitude" :37.79679 ,
+    "CarID" : "7"
+},
+{
+    "name": "SmartCar",
+    "favouriteArtist": "Schoolboy Q",
+    "coordinate_latitude":   48.02278 ,
+    "coordinate_longitude" : 37.79902 ,
+    "CarID" : "8"
+},
+{
+    "name": "SmartCar",
+    "favouriteArtist": "Kanye West",
+    "coordinate_latitude":   48.02271 ,
+    "coordinate_longitude" : 37.79698 ,
+    "CarID" : "9"
+}
+]
