@@ -8,8 +8,6 @@
 
 import UIKit
 import GoogleMaps
-import SwiftyJSON
-import Alamofire
 class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
     
     @IBOutlet weak var mapView: GMSMapView!
@@ -59,7 +57,7 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
             
             let marker = GMSMarker(position: posotion)
             let image = UIImage(named: "rapper")
-            marker.icon = self.imageWithImage(image: image!, scaledToSize:  CGSize(width: 35, height: 35))
+            marker.icon = self.imageWithImage(image: image!, scaledToSize:  CGSize(width: 50, height: 50))
             marker.userData = id
             marker.map = mapView
             
