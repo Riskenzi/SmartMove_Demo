@@ -116,7 +116,7 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         draw(src: userPosition!, dst: poinPosition)
         return true
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
               
               if let location = locations.last {
