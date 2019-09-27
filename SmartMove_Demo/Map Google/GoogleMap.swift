@@ -13,6 +13,8 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
     @IBOutlet weak var mapView: GMSMapView!
     var locationManager = CLLocationManager()
     let MapApple : Map = Map()
+    let marker_img = UIImage(named: "car")
+    let car_img = UIImage(named: "marker")
     private var polylineArray:[GMSCircle] = [GMSCircle]() //global variable
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,43 +56,72 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
              ///
 //            var markerInfo = Dictionary<String, Any>()
 //            markerInfo["CarID"] = id
-            
             let marker = GMSMarker(position: posotion)
-            let image = UIImage(named: "rapper")
-            marker.icon = self.imageWithImage(image: image!, scaledToSize:  CGSize(width: 50, height: 50))
             marker.userData = id
+            marker.icon = drawImageWithProfilePic(pp: marker_img!, image: car_img!)
+            marker.appearAnimation = GMSMarkerAnimation.pop
             marker.map = mapView
-            
+        
                 }
             }
        }
     
+   //put this code in your viewController class
+    func drawImageWithProfilePic(pp: UIImage, image: UIImage) -> UIImage {
+            
+           let imgView = UIImageView(image: image)
+           imgView.frame = CGRect(x: 0, y: 0, width: 65, height: 65)
+
+           let picImgView = UIImageView(image: pp)
+           picImgView.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
+
+           imgView.addSubview(picImgView)
+           picImgView.center.x = imgView.center.x
+           picImgView.center.y = imgView.center.y - 7
+           picImgView.layer.cornerRadius = picImgView.frame.width/2
+           picImgView.clipsToBounds = true
+           imgView.setNeedsLayout()
+           picImgView.setNeedsLayout()
+
+           let newImage = imageWithView(view: imgView)
+           return newImage
+       }
+
+       func imageWithView(view: UIView) -> UIImage {
+           var image: UIImage?
+           UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 0.0)
+           if let context = UIGraphicsGetCurrentContext() {
+               view.layer.render(in: context)
+               image = UIGraphicsGetImageFromCurrentImageContext()
+               UIGraphicsEndImageContext()
+           }
+           return image ?? UIImage()
+       }
+    
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+    
+        // remove  currently selected marker
+        if let selectedMarker = mapView.selectedMarker{
+            selectedMarker.icon = drawImageWithProfilePic(pp: marker_img!, image: car_img!)
+        }
+        // select new marker and make navigation and selected border
         mapView.selectedMarker = marker
         print("user tabed car from id :",marker.userData as! String)
         let userPosition = locationManager.location?.coordinate
         let poinPosition = marker.position
-    
+        let marker_img_old = marker.icon
+        let image_stoked =  marker_img_old?.stroked(with: .blue, size: 3)
+        let marker_img_new = image_stoked?.rotate(radians: .pi)
+        marker.icon = marker_img_new
         draw(src: userPosition!, dst: poinPosition)
-        
-        //callingDistanceAPI(src: userPosition!, dst: poinPosition)
         return true
-    }
-    
-    func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
-        //image.draw(in: CGRectMake(0, 0, newSize.width, newSize.height))
-        image.draw(in: CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: newSize.width, height: newSize.height))  )
-        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return newImage
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
               
               if let location = locations.last {
                 mapView.camera = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 14.0)
-                //locationManager.stopUpdatingLocation()
+                locationManager.stopUpdatingLocation() //need fix
               }
     }
           
@@ -133,7 +164,7 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
             }
         })
         task.resume()
-    }
+    }//draw api
     
     //MARK: Draw polyline
 
@@ -178,7 +209,7 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                 previousCircle = circle
             }
         }
-    }
+    } //path creator
 
 
         //MARK: - Removing dotted polyline
