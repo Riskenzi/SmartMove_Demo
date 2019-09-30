@@ -9,6 +9,13 @@
 import UIKit
 import GoogleMaps
 class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
+    @IBOutlet weak var ViewCars: UIView!
+    
+    @IBOutlet weak var time: UILabel!
+    
+    
+    @IBOutlet weak var distantion: UILabel!
+    
     
     @IBOutlet weak var mapView: GMSMapView!
     var locationManager = CLLocationManager()
@@ -33,7 +40,7 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         else {print("PLease turn on location services or GPS")}
         mapView.isMyLocationEnabled = true
         self.mapView.delegate = self
-        
+        self.mapView.addSubview(ViewCars)
     }
     
     func congigStyleMap(){
@@ -113,7 +120,10 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         let image_stoked =  marker_img_old?.stroked(with: .blue, size: 3)
         let marker_img_new = image_stoked?.rotate(radians: .pi)
         marker.icon = marker_img_new
-        draw(src: userPosition!, dst: poinPosition)
+        if userPosition != nil{
+            draw(src: userPosition!, dst: poinPosition)
+        }
+        
         return true
     }
 
@@ -147,14 +157,26 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
             } else {
                 do {
                     if let json : [String:Any] = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any] {
-
+                    
                         let preRoutes = json["routes"] as! NSArray
+                        
                         let routes = preRoutes[0] as! NSDictionary
                         let routeOverviewPolyline:NSDictionary = routes.value(forKey: "overview_polyline") as! NSDictionary
+                        
                         let polyString = routeOverviewPolyline.object(forKey: "points") as! String
-
+                        let timeRoures : NSArray = routes.value(forKey: "legs") as! NSArray
+                        let timeRoutes = timeRoures[0] as! NSDictionary
+                        let distanceRoute : NSDictionary = timeRoutes.value(forKey: "distance") as! NSDictionary
+                        let durationRoute : NSDictionary = timeRoutes.value(forKey: "duration") as! NSDictionary
+                        
+                        let distanceRoutes = distanceRoute.object(forKey: "text") as! String?
+                        let durationRoutes = durationRoute.object(forKey: "text") as! String?
+                       
                         DispatchQueue.main.async(execute: {
+                            
                             self.showPath(polyStr: polyString)
+                            self.time.text = durationRoutes
+                            self.distantion.text = distanceRoutes
                         })
                     }
 
