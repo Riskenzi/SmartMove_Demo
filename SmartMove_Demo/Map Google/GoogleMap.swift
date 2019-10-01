@@ -8,7 +8,7 @@
 
 import UIKit
 import GoogleMaps
-class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
+class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UICollectionViewDelegate, UICollectionViewDataSource  {
     @IBOutlet weak var ViewCars: UIView!
     
     @IBOutlet weak var time: UILabel!
@@ -18,15 +18,25 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
     
     
     @IBOutlet weak var mapView: GMSMapView!
+    
+    
+    
+    @IBOutlet weak var CollectionView: UICollectionView!
+    
     var locationManager = CLLocationManager()
     let MapApple : Map = Map()
     let marker_img = UIImage(named: "car")
     let car_img = UIImage(named: "marker")
     private var polylineArray:[GMSCircle] = [GMSCircle]() //global variable
+    
+    let data: [CarModel] = [CarModel(CarImage: UIImage(named: "carImage")!, CarName: "Tesla Modal X", CarNumber: "LA 51 ABC", CarDuration: "7 min", CarDistancion: "0.5 mi"),CarModel(CarImage: UIImage(named: "carImage")!, CarName: "Tesla Modal X", CarNumber: "LA 51 ABC", CarDuration: "7 min", CarDistancion: "0.5 mi"),CarModel(CarImage: UIImage(named: "carImage")!, CarName: "Tesla Modal X", CarNumber: "LA 51 ABC", CarDuration: "7 min", CarDistancion: "0.5 mi"),CarModel(CarImage: UIImage(named: "carImage")!, CarName: "Tesla Modal X", CarNumber: "LA 51 ABC", CarDuration: "7 min", CarDistancion: "0.5 mi"),CarModel(CarImage: UIImage(named: "carImage")!, CarName: "Tesla Modal X", CarNumber: "LA 51 ABC", CarDuration: "7 min", CarDistancion: "0.5 mi")]
     override func viewDidLoad() {
         super.viewDidLoad()
         MapApple.loadJsonFile()
         loadingPoint()
+        CollectionView.dataSource = self
+        CollectionView.delegate = self
+//        CollectionView.register(UINib.init(nibName: "CarItemCollectionView", bundle: nil), forCellWithReuseIdentifier: "CarItemCollectionView")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -169,14 +179,14 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                         let distanceRoute : NSDictionary = timeRoutes.value(forKey: "distance") as! NSDictionary
                         let durationRoute : NSDictionary = timeRoutes.value(forKey: "duration") as! NSDictionary
                         
-                        let distanceRoutes = distanceRoute.object(forKey: "text") as! String?
-                        let durationRoutes = durationRoute.object(forKey: "text") as! String?
+                       // let distanceRoutes = distanceRoute.object(forKey: "text") as! String?
+                     //   let durationRoutes = durationRoute.object(forKey: "text") as! String?
                        
                         DispatchQueue.main.async(execute: {
                             
                             self.showPath(polyStr: polyString)
-                            self.time.text = durationRoutes
-                            self.distantion.text = distanceRoutes
+//                            self.time.text = durationRoutes
+//                            self.distantion.text = distanceRoutes
                         })
                     }
 
@@ -242,6 +252,22 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                 root.map = nil
             }
         }
+    }
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // -----------------------------------
+        // Step 5
+        // TODO: Add number of items.
+        // -----------------------------------
+        return data.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CarItemCollectionView", for: indexPath) as! CarItemCollectionCell
+        cell.configure(wthi: data[indexPath.row])
+        return cell
     }
     /*
     // MARK: - Navigation

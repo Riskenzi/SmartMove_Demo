@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -66,33 +67,120 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="38y-1o-m9x">
                                         <rect key="frame" x="0.0" y="624" width="414" height="230"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="EHr-av-SKt">
-                                                <rect key="frame" x="169.5" y="59.5" width="75.5" height="111"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6mr-hn-ExD">
-                                                        <rect key="frame" x="0.0" y="0.0" width="75.5" height="30"/>
-                                                        <state key="normal" title="Button"/>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U3r-6g-rXu">
-                                                        <rect key="frame" x="0.0" y="50" width="75.5" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="distantion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okL-Ih-TN6">
-                                                        <rect key="frame" x="0.0" y="90.5" width="75.5" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="chR-1E-Dbp">
+                                                <rect key="frame" x="8" y="8" width="398" height="214"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cqH-zY-pox">
+                                                    <size key="itemSize" width="414" height="214"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CarItemCollectionView" reuseIdentifier="CarItemCollectionView" id="p9p-tQ-Wsn" customClass="CarItemCollectionCell" customModule="SmartMove_Demo" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="214"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" insetsLayoutMarginsFromSafeArea="NO" id="2Dx-oj-lTC">
+                                                            <rect key="frame" x="0.0" y="0.0" width="394" height="214"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CarItemBG" translatesAutoresizingMaskIntoConstraints="NO" id="w8l-Me-ahH">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="394" height="214"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="214" id="Mp1-x5-coB"/>
+                                                                        <constraint firstAttribute="width" constant="394" id="hfX-Xq-h2M"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="LA 51 ABC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1d-hf-kzN">
+                                                                    <rect key="frame" x="141" y="115" width="112" height="21"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" systemColor="opaqueSeparatorColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="carImage" translatesAutoresizingMaskIntoConstraints="NO" id="BE2-tC-Jyr">
+                                                                    <rect key="frame" x="-15" y="62" width="148" height="82"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tesla Modal X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kmV-sC-jio">
+                                                                    <rect key="frame" x="141" y="93" width="112" height="21"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCk-v9-mKA">
+                                                                    <rect key="frame" x="221" y="9" width="32" height="32"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <state key="normal" backgroundImage="car"/>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHU-Lv-qXn">
+                                                                    <rect key="frame" x="271" y="9" width="32" height="32"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <state key="normal" backgroundImage="car"/>
+                                                                </button>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="7 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s79-jA-gLE">
+                                                                    <rect key="frame" x="318" y="15" width="51" height="21"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NtE-FN-jEE">
+                                                                    <rect key="frame" x="162" y="158.5" width="70" height="56"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <state key="normal" backgroundImage="paperplane.fill" catalog="system"/>
+                                                                </button>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default_marker.png" translatesAutoresizingMaskIntoConstraints="NO" id="uUA-F2-9DO">
+                                                                    <rect key="frame" x="32" y="158" width="27" height="23"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.5 mi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZA-or-MjO">
+                                                                    <rect key="frame" x="67" y="161" width="47" height="21"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tortoise.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="KAY-y9-80s">
+                                                                    <rect key="frame" x="259" y="155.5" width="32" height="23"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                </imageView>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="battery.25" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Oir-jL-SW6">
+                                                                    <rect key="frame" x="299" y="154" width="70" height="23"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="w8l-Me-ahH" secondAttribute="bottom" id="7ID-xM-4ko"/>
+                                                                <constraint firstItem="w8l-Me-ahH" firstAttribute="top" secondItem="2Dx-oj-lTC" secondAttribute="top" id="Gnr-hZ-hdb"/>
+                                                                <constraint firstItem="w8l-Me-ahH" firstAttribute="leading" secondItem="2Dx-oj-lTC" secondAttribute="leading" id="Y8X-We-2No"/>
+                                                                <constraint firstAttribute="trailing" secondItem="w8l-Me-ahH" secondAttribute="trailing" id="eiq-HC-1Xn"/>
+                                                            </constraints>
+                                                        </collectionViewCellContentView>
+                                                        <size key="customSize" width="394" height="214"/>
+                                                        <connections>
+                                                            <outlet property="CarDistancion" destination="s79-jA-gLE" id="bf3-f2-vaE"/>
+                                                            <outlet property="CarDuration" destination="UZA-or-MjO" id="e7v-Ay-JoI"/>
+                                                            <outlet property="CarImage" destination="BE2-tC-Jyr" id="8lG-11-IDL"/>
+                                                            <outlet property="CarName" destination="kmV-sC-jio" id="Bdw-aI-bAb"/>
+                                                            <outlet property="CarNumber" destination="W1d-hf-kzN" id="OZH-SV-ZuD"/>
+                                                        </connections>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="EHr-av-SKt" firstAttribute="centerX" secondItem="38y-1o-m9x" secondAttribute="centerX" id="IXu-3E-mNa"/>
-                                            <constraint firstItem="EHr-av-SKt" firstAttribute="centerY" secondItem="38y-1o-m9x" secondAttribute="centerY" id="dZB-OU-bDR"/>
+                                            <constraint firstItem="chR-1E-Dbp" firstAttribute="leading" secondItem="38y-1o-m9x" secondAttribute="leading" constant="8" id="9uU-DV-e83"/>
+                                            <constraint firstAttribute="bottom" secondItem="chR-1E-Dbp" secondAttribute="bottom" constant="8" id="cyh-VE-8Jd"/>
                                             <constraint firstAttribute="height" constant="230" id="ghc-BC-z2d"/>
+                                            <constraint firstItem="chR-1E-Dbp" firstAttribute="top" secondItem="38y-1o-m9x" secondAttribute="top" constant="8" id="pcT-lL-yJ8"/>
+                                            <constraint firstAttribute="trailing" secondItem="chR-1E-Dbp" secondAttribute="trailing" constant="8" id="qXD-Zm-EPb"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -119,10 +207,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="0Vr-k1-Yta"/>
                     <connections>
+                        <outlet property="CollectionView" destination="chR-1E-Dbp" id="aTX-dQ-E2c"/>
                         <outlet property="ViewCars" destination="38y-1o-m9x" id="bAx-W5-FYI"/>
-                        <outlet property="distantion" destination="okL-Ih-TN6" id="taz-u9-c3t"/>
                         <outlet property="mapView" destination="Lsa-7A-Opt" id="H9x-v7-ztP"/>
-                        <outlet property="time" destination="U3r-6g-rXu" id="Nz4-Of-4fb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kWz-GP-3hi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -130,4 +217,13 @@
             <point key="canvasLocation" x="1740.5797101449277" y="115.84821428571428"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CarItemBG" width="1066" height="582"/>
+        <image name="battery.25" catalog="system" width="64" height="32"/>
+        <image name="car" width="32" height="32"/>
+        <image name="carImage" width="778" height="409"/>
+        <image name="default_marker.png" width="26" height="41"/>
+        <image name="paperplane.fill" catalog="system" width="64" height="60"/>
+        <image name="tortoise.fill" catalog="system" width="64" height="34"/>
+    </resources>
 </document>

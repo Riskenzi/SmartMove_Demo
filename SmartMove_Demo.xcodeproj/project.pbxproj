@@ -22,6 +22,8 @@
 		F4040B87233B8034009D3F3C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4040B86233B8034009D3F3C /* DataManager.swift */; };
 		F4040B89233B976C009D3F3C /* CarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4040B88233B976C009D3F3C /* CarItem.swift */; };
 		F42BB335233DFAF3006CD20C /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42BB334233DFAF2006CD20C /* UIImage+Extension.swift */; };
+		F4C50D8623436735002B6CD0 /* CarItemCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C50D8523436734002B6CD0 /* CarItemCollectionView.xib */; };
+		F4C50D8823436E3D002B6CD0 /* CarItemCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C50D8723436E3D002B6CD0 /* CarItemCollectionCell.swift */; };
 		F4EF004F233CC69400F3E4F9 /* GoogleMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF004E233CC69400F3E4F9 /* GoogleMap.swift */; };
 		F4EF0051233CCDE000F3E4F9 /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = F4EF0050233CCDE000F3E4F9 /* style.json */; };
 /* End PBXBuildFile section */
@@ -46,6 +48,8 @@
 		F4040B86233B8034009D3F3C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		F4040B88233B976C009D3F3C /* CarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarItem.swift; sourceTree = "<group>"; };
 		F42BB334233DFAF2006CD20C /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		F4C50D8523436734002B6CD0 /* CarItemCollectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarItemCollectionView.xib; sourceTree = "<group>"; };
+		F4C50D8723436E3D002B6CD0 /* CarItemCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarItemCollectionCell.swift; sourceTree = "<group>"; };
 		F4EF004E233CC69400F3E4F9 /* GoogleMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMap.swift; sourceTree = "<group>"; };
 		F4EF0050233CCDE000F3E4F9 /* style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +144,8 @@
 				F4EF004E233CC69400F3E4F9 /* GoogleMap.swift */,
 				F4EF0050233CCDE000F3E4F9 /* style.json */,
 				F42BB334233DFAF2006CD20C /* UIImage+Extension.swift */,
+				F4C50D8723436E3D002B6CD0 /* CarItemCollectionCell.swift */,
+				F4C50D8523436734002B6CD0 /* CarItemCollectionView.xib */,
 			);
 			path = "Map Google";
 			sourceTree = "<group>";
@@ -214,6 +220,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4C50D8623436735002B6CD0 /* CarItemCollectionView.xib in Resources */,
 				F4EF0051233CCDE000F3E4F9 /* style.json in Resources */,
 				F4040B7C233B5040009D3F3C /* mapstyle.json in Resources */,
 				F4040B80233B56C8009D3F3C /* point.json in Resources */,
@@ -289,6 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4C50D8823436E3D002B6CD0 /* CarItemCollectionCell.swift in Sources */,
 				F4040B67233B4899009D3F3C /* ViewController.swift in Sources */,
 				F4040B7E233B55B6009D3F3C /* MapPin.swift in Sources */,
 				F4040B89233B976C009D3F3C /* CarItem.swift in Sources */,
