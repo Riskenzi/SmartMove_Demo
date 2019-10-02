@@ -1,62 +1,62 @@
 [{
     "name": "SmartCar",
-    "favouriteArtist": "The Game",
+    "favouriteArtist": "LA 51 ABC",
     "coordinate_latitude":  48.02102 ,
     "coordinate_longitude" : 37.80048 ,
     "CarID" : "1"
 },
 {
     "name": "SmartCar",
-    "favouriteArtist": "N.W.A.",
+    "favouriteArtist": "LA 51 AB1",
     "coordinate_latitude" :   48.01890 ,
     "coordinate_longitude" :37.80173 ,
     "CarID" : "2"
 },
 {
     "name": "SmartCar",
-    "favouriteArtist": "YG",
+    "favouriteArtist": "LA 21 ABC",
     "coordinate_latitude":  48.02346 ,
     "coordinate_longitude" :37.79477 ,
     "CarID" : "3"
 },
 {
     "name": "SmartCar",
-    "favouriteArtist": "Danny Brown",
+    "favouriteArtist": "LA 50 ABC",
     "coordinate_latitude":  48.02725 ,
     "coordinate_longitude" :37.79726 ,
     "CarID" : "4"
 },
 {
     "name": "SmartCar",
-    "favouriteArtist": "Royce da 5'9\"",
+    "favouriteArtist": "LA 66 ABC",
     "coordinate_latitude":   48.02590 ,
     "coordinate_longitude" :37.80031 ,
     "CarID" : "5"
 },
 {
     "name": "SmartCar",
-    "favouriteArtist": "Run the Jewels",
+    "favouriteArtist": "LA 11 ABC",
     "coordinate_latitude":  48.02263 ,
     "coordinate_longitude" :37.80430 ,
     "CarID" : "6"
 },
 {
     "name": "SmartCar",
-    "favouriteArtist": "Eminem",
+    "favouriteArtist": "LA 54 ABC",
     "coordinate_latitude":  48.02491 ,
     "coordinate_longitude" :37.79679 ,
     "CarID" : "7"
 },
 {
     "name": "SmartCar",
-    "favouriteArtist": "Schoolboy Q",
+    "favouriteArtist": "LA 20 ABC",
     "coordinate_latitude":   48.02278 ,
     "coordinate_longitude" : 37.79902 ,
     "CarID" : "8"
 },
 {
     "name": "SmartCar",
-    "favouriteArtist": "Kanye West",
+    "favouriteArtist": "LA 22 ABC",
     "coordinate_latitude":   48.02271 ,
     "coordinate_longitude" : 37.79698 ,
     "CarID" : "9"

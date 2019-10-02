@@ -10,14 +10,49 @@ import UIKit
 import GoogleMaps
 class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
     @IBOutlet weak var ViewCars: UIView!
-    
+    ///view info
     @IBOutlet weak var time: UILabel!
     
     
     @IBOutlet weak var distantion: UILabel!
     
     
+    @IBOutlet weak var CarName: UILabel!
+    
+    
+    @IBOutlet weak var CarNumber: UILabel!
+    
+    @IBOutlet weak var ButtonCarDetail: UIButton! { didSet {
+        ButtonCarDetail.layer.masksToBounds = false
+        ButtonCarDetail.layer.cornerRadius = ButtonCarDetail.frame.width / 2
+        ButtonCarDetail.layer.borderColor = UIColor.white.cgColor
+        ButtonCarDetail.layer.borderWidth = 4
+        }
+    }
+    
+    @IBOutlet weak var ButtonDriving: UIButton!{ didSet {
+    ButtonDriving.layer.masksToBounds = false
+    ButtonDriving.layer.cornerRadius = ButtonCarDetail.frame.width / 3
+        }
+    }
+    
+    @IBOutlet weak var ButtonWalking: UIButton!{ didSet {
+    ButtonWalking.layer.masksToBounds = false
+    ButtonWalking.layer.cornerRadius = ButtonCarDetail.frame.width / 3
+        }
+    }
+    
+    //////
     @IBOutlet weak var mapView: GMSMapView!
+    
+//CarInfo
+    
+    var CarNameStr : String = ""
+    var CarNumberStr : String = ""
+    var timeRound : String = ""
+    var distRoud : String = ""
+//
+    
     var locationManager = CLLocationManager()
     let MapApple : Map = Map()
     let marker_img = UIImage(named: "car")
@@ -41,6 +76,9 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         mapView.isMyLocationEnabled = true
         self.mapView.delegate = self
         self.mapView.addSubview(ViewCars)
+        self.mapView.addSubview(ButtonCarDetail)
+        ViewCars.isHidden = true
+        ButtonCarDetail.isHidden = true
     }
     
     func congigStyleMap(){
@@ -110,10 +148,24 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         // remove  currently selected marker
         if let selectedMarker = mapView.selectedMarker{
             selectedMarker.icon = drawImageWithProfilePic(pp: marker_img!, image: car_img!)
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                      self.ViewCars.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+                      self.ViewCars.alpha = 0
+                      self.ButtonCarDetail.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+                      self.ButtonCarDetail.alpha = 0
+                      
+                      
+                  }){
+                      (success: Bool) in
+                    self.ViewCars.isHidden = true
+                    self.ButtonCarDetail.isHidden = true
+                  }
         }
         // select new marker and make navigation and selected border
         mapView.selectedMarker = marker
         print("user tabed car from id :",marker.userData as! String)
+        let id = marker.userData as! String
         let userPosition = locationManager.location?.coordinate
         let poinPosition = marker.position
         let marker_img_old = marker.icon
@@ -122,9 +174,37 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         marker.icon = marker_img_new
         if userPosition != nil{
             draw(src: userPosition!, dst: poinPosition)
+            //par1 data
+            self.CarNameStr = ((DataManager.sharedCenter.DataPoints.object(forKey: id) as! PinLocations).name!)
+            self.CarNumberStr = ((DataManager.sharedCenter.DataPoints.object(forKey: id) as! PinLocations).favouriteArtist!)
+        
+        
         }
         
         return true
+    }
+    
+    func ShowPopView(CarName : String,CarNumber : String, CarDist : String, CarTime : String){
+
+        if CarName.count != 0 {
+            self.CarName.text = CarName
+            self.CarNumber.text = CarNumber
+            self.time.text = CarTime
+            self.distantion.text = CarDist
+            ViewCars.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+            ViewCars.alpha = 0
+            ButtonCarDetail.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+            ButtonCarDetail.alpha = 0
+            UIView.animate(withDuration: 0.4)
+            {
+                self.ViewCars.alpha = 1
+                self.ViewCars.transform = CGAffineTransform.identity
+                self.ButtonCarDetail.alpha = 1
+                self.ButtonCarDetail.transform = CGAffineTransform.identity
+            }
+            ViewCars.isHidden = false
+            ButtonCarDetail.isHidden = false
+        }
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
@@ -173,10 +253,15 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                         let durationRoutes = durationRoute.object(forKey: "text") as! String?
                        
                         DispatchQueue.main.async(execute: {
-                            
+                            self.timeRound = durationRoutes!
+                            self.distRoud = distanceRoutes!
+                            //
                             self.showPath(polyStr: polyString)
-                            self.time.text = durationRoutes
-                            self.distantion.text = distanceRoutes
+                            //part2 data
+                            
+                            if self.CarNumberStr != "" {
+                            self.ShowPopView(CarName: self.CarNameStr, CarNumber: self.CarNumberStr, CarDist: self.timeRound, CarTime: self.distRoud)
+                            }
                         })
                     }
 
@@ -229,11 +314,26 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                 circle.userData = "root"
                 polylineArray.append(circle)
                 previousCircle = circle
+             
+
             }
         }
     } //path creator
 
 
+    @IBAction func ClickDriving(_ sender: Any) {
+        print("driving")
+    }
+    
+    @IBAction func ClickWalking(_ sender: Any) {
+        print("walking")
+    }
+    
+    @IBAction func ClickCarSelected(_ sender: Any) {
+        print("ClickCarSelected")
+    }
+    
+    
         //MARK: - Removing dotted polyline
         func removePolylinePath() {
         for root: GMSCircle in self.polylineArray {
