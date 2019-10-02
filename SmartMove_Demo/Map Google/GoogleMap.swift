@@ -253,8 +253,8 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                         let durationRoutes = durationRoute.object(forKey: "text") as! String?
                        
                         DispatchQueue.main.async(execute: {
-                            self.timeRound = durationRoutes!
-                            self.distRoud = distanceRoutes!
+                            self.timeRound = distanceRoutes!
+                            self.distRoud = durationRoutes!
                             //
                             self.showPath(polyStr: polyString)
                             //part2 data
