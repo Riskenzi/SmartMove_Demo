@@ -76,7 +76,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="180" height="147"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="carImage" translatesAutoresizingMaskIntoConstraints="NO" id="n49-DD-Z0D">
-                                                                <rect key="frame" x="0.0" y="0.0" width="180" height="100"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="180.00000000000023" height="100"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="180" id="SRb-r6-89C"/>
                                                                     <constraint firstAttribute="height" constant="100" id="pt5-ez-qZL"/>
@@ -136,7 +136,7 @@
                                                         </constraints>
                                                         <state key="normal" image="drivingButton"/>
                                                         <connections>
-                                                            <action selector="ClickDriving:" destination="ePk-oQ-tb5" eventType="touchUpInside" id="heo-yf-OUI"/>
+                                                            <action selector="ClickDriving:" destination="ePk-oQ-tb5" eventType="touchUpInside" id="qUa-et-BEm"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SuN-ZK-D6f">
@@ -148,7 +148,7 @@
                                                         </constraints>
                                                         <state key="normal" image="ButtonWalking"/>
                                                         <connections>
-                                                            <action selector="ClickWalking:" destination="ePk-oQ-tb5" eventType="touchUpInside" id="Wib-qX-3uL"/>
+                                                            <action selector="ClickWalking:" destination="ePk-oQ-tb5" eventType="touchUpInside" id="J1y-XR-xL4"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGG-xB-agY">
@@ -187,14 +187,124 @@
                                             <action selector="ClickCarSelected:" destination="ePk-oQ-tb5" eventType="touchUpInside" id="lnf-md-mYw"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6yB-x1-yhy">
+                                        <rect key="frame" x="0.0" y="30" width="414" height="200"/>
+                                        <subviews>
+                                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ZL-6A-eOp">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <textAttributes key="titleTextAttributes">
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </textAttributes>
+                                                <items>
+                                                    <navigationItem title="Title" id="YJH-X8-ADA">
+                                                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="bfP-v1-Rab">
+                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <connections>
+                                                                <action selector="CarViewTabClose:" destination="ePk-oQ-tb5" id="4GX-bU-2J9"/>
+                                                            </connections>
+                                                        </barButtonItem>
+                                                    </navigationItem>
+                                                </items>
+                                            </navigationBar>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Hcm-kt-tiC">
+                                                <rect key="frame" x="256" y="54" width="150" height="143"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="carImage" translatesAutoresizingMaskIntoConstraints="NO" id="3cK-pD-m7H">
+                                                        <rect key="frame" x="0.0" y="0.0" width="150.00000000000023" height="100"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="100" id="BGO-GD-fxS"/>
+                                                            <constraint firstAttribute="width" constant="150" id="ODs-U8-SOI"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-zU-Mqf">
+                                                        <rect key="frame" x="24.5" y="108" width="125.5" height="35"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TJ-zN-9yi">
+                                                                <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                                                <color key="backgroundColor" red="0.92156862750000001" green="0.92549019610000005" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="35" id="LdZ-ij-naU"/>
+                                                                    <constraint firstAttribute="height" constant="35" id="iez-sw-Jbv"/>
+                                                                </constraints>
+                                                                <state key="normal" image="drivingButton"/>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CX3-At-DPd">
+                                                                <rect key="frame" x="42" y="0.0" width="35" height="35"/>
+                                                                <color key="backgroundColor" red="0.20392156859999999" green="0.23529411759999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="35" id="07h-8h-fKH"/>
+                                                                    <constraint firstAttribute="height" constant="35" id="j9m-RI-3aw"/>
+                                                                </constraints>
+                                                                <state key="normal" image="ButtonWalking"/>
+                                                            </button>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6RK-Nw-lSL">
+                                                                <rect key="frame" x="84" y="0.0" width="41.5" height="35"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gCW-sp-qYp">
+                                                <rect key="frame" x="8" y="74" width="110.5" height="78"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tesla Modal X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xg9-9R-6Qx">
+                                                        <rect key="frame" x="0.0" y="0.0" width="110.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LA 51 ABC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxf-qW-8TZ">
+                                                        <rect key="frame" x="0.0" y="30.5" width="110.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Silver" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lE-Wr-nUL">
+                                                        <rect key="frame" x="0.0" y="61" width="110.5" height="17"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="5ZL-6A-eOp" firstAttribute="centerX" secondItem="6yB-x1-yhy" secondAttribute="centerX" id="14I-z9-iYZ"/>
+                                            <constraint firstItem="gCW-sp-qYp" firstAttribute="top" secondItem="5ZL-6A-eOp" secondAttribute="bottom" constant="30" id="1IV-E1-zzf"/>
+                                            <constraint firstItem="gCW-sp-qYp" firstAttribute="leading" secondItem="6yB-x1-yhy" secondAttribute="leading" constant="8" id="6zQ-ad-cYQ"/>
+                                            <constraint firstItem="5ZL-6A-eOp" firstAttribute="leading" secondItem="6yB-x1-yhy" secondAttribute="leading" id="823-qx-dTK"/>
+                                            <constraint firstItem="5ZL-6A-eOp" firstAttribute="top" secondItem="6yB-x1-yhy" secondAttribute="top" id="e9g-mA-fqw"/>
+                                            <constraint firstItem="Hcm-kt-tiC" firstAttribute="top" secondItem="5ZL-6A-eOp" secondAttribute="bottom" constant="10" id="fzg-ah-Vyc"/>
+                                            <constraint firstAttribute="height" constant="200" id="hkH-VN-gHT"/>
+                                            <constraint firstAttribute="trailing" secondItem="Hcm-kt-tiC" secondAttribute="trailing" constant="8" id="rat-vo-Lq2"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eko-EW-YHi">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="kcq-eD-tVQ"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="6yB-x1-yhy" secondAttribute="trailing" id="9Mz-ea-fbz"/>
                                     <constraint firstItem="38y-1o-m9x" firstAttribute="centerX" secondItem="Lsa-7A-Opt" secondAttribute="centerX" id="DyK-Ga-yID"/>
+                                    <constraint firstItem="6yB-x1-yhy" firstAttribute="leading" secondItem="Lsa-7A-Opt" secondAttribute="leading" id="Edz-Kw-O1E"/>
+                                    <constraint firstAttribute="trailing" secondItem="eko-EW-YHi" secondAttribute="trailing" id="JTs-Pl-eEc"/>
                                     <constraint firstItem="Nv5-6a-cFF" firstAttribute="centerX" secondItem="Lsa-7A-Opt" secondAttribute="centerX" id="NTv-uv-5FG"/>
                                     <constraint firstAttribute="bottom" secondItem="38y-1o-m9x" secondAttribute="bottom" constant="16" id="ZhQ-om-5Cw"/>
+                                    <constraint firstItem="eko-EW-YHi" firstAttribute="top" secondItem="Lsa-7A-Opt" secondAttribute="top" id="awK-Xa-MJH"/>
                                     <constraint firstAttribute="bottom" secondItem="Nv5-6a-cFF" secondAttribute="bottom" constant="8" id="mOA-pk-DHH"/>
+                                    <constraint firstItem="6yB-x1-yhy" firstAttribute="top" secondItem="Lsa-7A-Opt" secondAttribute="top" constant="30" id="n0p-eG-yRu"/>
                                     <constraint firstItem="38y-1o-m9x" firstAttribute="width" secondItem="Lsa-7A-Opt" secondAttribute="width" id="pnn-tW-nlN"/>
+                                    <constraint firstItem="eko-EW-YHi" firstAttribute="leading" secondItem="Lsa-7A-Opt" secondAttribute="leading" id="y2Z-v5-Mbq"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -214,14 +324,24 @@
                     <navigationItem key="navigationItem" id="0Vr-k1-Yta"/>
                     <connections>
                         <outlet property="ButtonCarDetail" destination="Nv5-6a-cFF" id="FPI-PY-SbQ"/>
-                        <outlet property="ButtonDriving" destination="RQE-FQ-ZHV" id="3kP-FQ-Rw1"/>
+                        <outlet property="ButtonDriving" destination="RQE-FQ-ZHV" id="GA7-es-kFW"/>
                         <outlet property="ButtonWalking" destination="SuN-ZK-D6f" id="JIW-Fj-6oN"/>
+                        <outlet property="CarLiveColor" destination="7lE-Wr-nUL" id="oRc-Xy-hzD"/>
+                        <outlet property="CarLiveDriving" destination="0TJ-zN-9yi" id="lve-et-FVp"/>
+                        <outlet property="CarLiveImage" destination="3cK-pD-m7H" id="bdl-jj-6p3"/>
+                        <outlet property="CarLiveName" destination="Xg9-9R-6Qx" id="SmE-tI-2GE"/>
+                        <outlet property="CarLiveNumber" destination="oxf-qW-8TZ" id="xr6-di-2lM"/>
+                        <outlet property="CarLiveTime" destination="6RK-Nw-lSL" id="906-bR-4nn"/>
+                        <outlet property="CarLiveView" destination="6yB-x1-yhy" id="iw7-VV-9qW"/>
+                        <outlet property="CarLiveWalking" destination="CX3-At-DPd" id="FEf-wn-QyX"/>
                         <outlet property="CarName" destination="p3m-14-jxV" id="b9N-QQ-etY"/>
                         <outlet property="CarNumber" destination="0kg-rr-iRK" id="xi0-o7-7sW"/>
+                        <outlet property="StatusBarMaskView" destination="eko-EW-YHi" id="otl-dq-HOO"/>
                         <outlet property="ViewCars" destination="38y-1o-m9x" id="bAx-W5-FYI"/>
                         <outlet property="distantion" destination="ggx-lP-gdY" id="MIh-NX-JJ2"/>
                         <outlet property="mapView" destination="Lsa-7A-Opt" id="H9x-v7-ztP"/>
-                        <outlet property="time" destination="gGG-xB-agY" id="zoA-1S-ozg"/>
+                        <outlet property="navItemTitle" destination="YJH-X8-ADA" id="HY1-V8-fP1"/>
+                        <outlet property="time" destination="gGG-xB-agY" id="0Um-7t-fdB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kWz-GP-3hi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

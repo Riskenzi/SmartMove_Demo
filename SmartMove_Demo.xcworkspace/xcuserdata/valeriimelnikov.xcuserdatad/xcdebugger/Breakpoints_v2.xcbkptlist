@@ -78,8 +78,8 @@
             filePath = "SmartMove_Demo/Map Google/GoogleMap.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "402"
-            endingLineNumber = "402"
+            startingLineNumber = "439"
+            endingLineNumber = "439"
             landmarkName = "ClickWalking(_:)"
             landmarkType = "7">
          </BreakpointContent>

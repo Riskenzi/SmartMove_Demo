@@ -52,6 +52,37 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
     var timeRound : String = ""
     var distRoud : String = ""
     var CarPosition : CLLocationCoordinate2D?
+// MARK: CarLiveView
+    @IBOutlet weak var CarLiveView: UIView!
+    
+    @IBOutlet weak var navItemTitle: UINavigationItem!
+    
+    @IBOutlet weak var CarLiveName: UILabel!
+    
+    @IBOutlet weak var CarLiveNumber: UILabel!
+    
+    @IBOutlet weak var CarLiveColor: UILabel!
+    
+    @IBOutlet weak var CarLiveImage: UIImageView!
+    
+    @IBOutlet weak var CarLiveDriving: UIButton!{ didSet {
+    CarLiveDriving.layer.masksToBounds = false
+    CarLiveDriving.layer.cornerRadius = CarLiveDriving.frame.width / 3
+        }
+    }
+    
+    @IBOutlet weak var CarLiveWalking: UIButton!{ didSet {
+    CarLiveWalking.layer.masksToBounds = false
+    CarLiveWalking.layer.cornerRadius = CarLiveWalking.frame.width / 3
+        }
+    }
+    
+    @IBOutlet weak var CarLiveTime: UILabel!
+    
+    
+    @IBOutlet weak var StatusBarMaskView: UIView!
+    
+    
 //
     
     var locationManager = CLLocationManager()
@@ -78,9 +109,15 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         self.mapView.delegate = self
         self.mapView.addSubview(ViewCars)
         self.mapView.addSubview(ButtonCarDetail)
+        self.mapView.addSubview(CarLiveView)
+        self.mapView.addSubview(StatusBarMaskView)
         ViewCars.isHidden = true
         //MARK: ViewCars hide
         ButtonCarDetail.isHidden = true
+        
+        CarLiveView.isHidden = true
+        
+        StatusBarMaskView.isHidden = true
         //MARK: buttoncardetail hide
     }
     
@@ -407,9 +444,63 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
     
     @IBAction func ClickCarSelected(_ sender: Any) {
         print("ClickCarSelected")
-        //MARK: car info detail
+        UIView.animate(withDuration: 0.3, animations: {
+                            self.ViewCars.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+                            self.ViewCars.alpha = 0
+                            self.ButtonCarDetail.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+                            self.ButtonCarDetail.alpha = 0
+                            
+                            
+                        }){
+                            (success: Bool) in
+                          self.ViewCars.isHidden = true
+                          self.ButtonCarDetail.isHidden = true
+                        }
+       if self.CarNumberStr != "" {
+            //MARK: called showPopView
+                          self.ShowLiveCar(CarName: self.CarNameStr, CarNumber: self.CarNumberStr,CarTime: self.timeRound)
+        }
+        //MARK: car liveView info detail
     }
     
+    func ShowLiveCar(CarName : String,CarNumber : String, CarTime : String){
+    //MARK: Show LiveView
+            if CarName.count != 0 {
+                self.CarLiveName.text = CarName
+                self.CarLiveNumber.text = CarNumber
+                self.time.text = CarTime
+                CarLiveView.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+                CarLiveView.alpha = 0
+                StatusBarMaskView.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+                StatusBarMaskView.alpha = 0
+                self.navItemTitle.title = "You car is waiting for you"
+                UIView.animate(withDuration: 0.4)
+                {
+                    self.CarLiveView.alpha = 1
+                    self.CarLiveView.transform = CGAffineTransform.identity
+                    self.StatusBarMaskView.alpha = 1
+                    self.StatusBarMaskView.transform = CGAffineTransform.identity
+                  
+                }
+                CarLiveView.isHidden = false
+                StatusBarMaskView.isHidden = false
+            }
+        }
+    
+    @IBAction func CarViewTabClose(_ sender: Any) {
+        UIView.animate(withDuration: 0.3, animations: {
+                           self.CarLiveView.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+                           self.CarLiveView.alpha = 0
+                           self.StatusBarMaskView.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+                            self.StatusBarMaskView.alpha = 0
+                           
+                       }){
+                           (success: Bool) in
+                         self.CarLiveView.isHidden = true
+                        self.StatusBarMaskView.isHidden = true
+                       }
+        
+    }
     
         //MARK: - Removing dotted polyline
         func removePolylinePath() {
