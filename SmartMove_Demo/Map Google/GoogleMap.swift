@@ -67,13 +67,13 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
     
     @IBOutlet weak var CarLiveDriving: UIButton!{ didSet {
     CarLiveDriving.layer.masksToBounds = false
-    CarLiveDriving.layer.cornerRadius = CarLiveDriving.frame.width / 3
+    CarLiveDriving.layer.cornerRadius = CarLiveDriving.frame.width / 2
         }
     }
     
     @IBOutlet weak var CarLiveWalking: UIButton!{ didSet {
     CarLiveWalking.layer.masksToBounds = false
-    CarLiveWalking.layer.cornerRadius = CarLiveWalking.frame.width / 3
+    CarLiveWalking.layer.cornerRadius = CarLiveWalking.frame.width / 2
         }
     }
     
@@ -210,7 +210,7 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         let poinPosition = marker.position
         
         let marker_img_old = marker.icon
-        let image_stoked =  marker_img_old?.stroked(with: .blue, size: 3)
+        let image_stoked =  marker_img_old?.stroked(with: hexStringToUIColor(hex: "4285f4"), size: 3)
         let marker_img_new = image_stoked?.rotate(radians: .pi)
         marker.icon = marker_img_new
         if userPosition != nil{
@@ -401,8 +401,8 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                 let circleRadius = 3 * CLLocationDistance(circleRadiusScale)
                 let circle = GMSCircle(position: circleCoordinate, radius: circleRadius)
                 circle.strokeWidth = 1.0
-                circle.strokeColor = UIColor.blue
-                circle.fillColor = UIColor.blue
+                circle.strokeColor =  hexStringToUIColor(hex: "4285f4")
+                circle.fillColor = hexStringToUIColor(hex: "4285f4")
                 circle.map = mapView
                 circle.userData = "root"
                 polylineArray.append(circle)
@@ -499,6 +499,14 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                          self.CarLiveView.isHidden = true
                         self.StatusBarMaskView.isHidden = true
                        }
+        
+        if self.mapView.selectedMarker != nil{
+            self.mapView.selectedMarker!.icon = drawImageWithProfilePic(pp: marker_img!, image: car_img!)
+            self.mapView.selectedMarker = nil
+            self.removePolylinePath()
+        }
+        
+        
         
     }
     
