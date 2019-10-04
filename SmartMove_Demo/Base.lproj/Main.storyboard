@@ -291,6 +291,13 @@
                                             <constraint firstAttribute="height" constant="30" id="kcq-eD-tVQ"/>
                                         </constraints>
                                     </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oob-WW-fb6">
+                                        <rect key="frame" x="0.0" y="662" width="414" height="200"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="eFI-yR-I9j"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -299,9 +306,12 @@
                                     <constraint firstItem="6yB-x1-yhy" firstAttribute="leading" secondItem="Lsa-7A-Opt" secondAttribute="leading" id="Edz-Kw-O1E"/>
                                     <constraint firstAttribute="trailing" secondItem="eko-EW-YHi" secondAttribute="trailing" id="JTs-Pl-eEc"/>
                                     <constraint firstItem="Nv5-6a-cFF" firstAttribute="centerX" secondItem="Lsa-7A-Opt" secondAttribute="centerX" id="NTv-uv-5FG"/>
+                                    <constraint firstItem="oob-WW-fb6" firstAttribute="leading" secondItem="Lsa-7A-Opt" secondAttribute="leading" id="R0r-Cl-Uve"/>
+                                    <constraint firstAttribute="trailing" secondItem="oob-WW-fb6" secondAttribute="trailing" id="TUc-vw-I5c"/>
                                     <constraint firstAttribute="bottom" secondItem="38y-1o-m9x" secondAttribute="bottom" constant="16" id="ZhQ-om-5Cw"/>
                                     <constraint firstItem="eko-EW-YHi" firstAttribute="top" secondItem="Lsa-7A-Opt" secondAttribute="top" id="awK-Xa-MJH"/>
                                     <constraint firstAttribute="bottom" secondItem="Nv5-6a-cFF" secondAttribute="bottom" constant="8" id="mOA-pk-DHH"/>
+                                    <constraint firstAttribute="bottom" secondItem="oob-WW-fb6" secondAttribute="bottom" id="mcm-Fp-hPT"/>
                                     <constraint firstItem="6yB-x1-yhy" firstAttribute="top" secondItem="Lsa-7A-Opt" secondAttribute="top" constant="30" id="n0p-eG-yRu"/>
                                     <constraint firstItem="38y-1o-m9x" firstAttribute="width" secondItem="Lsa-7A-Opt" secondAttribute="width" id="pnn-tW-nlN"/>
                                     <constraint firstItem="eko-EW-YHi" firstAttribute="leading" secondItem="Lsa-7A-Opt" secondAttribute="leading" id="y2Z-v5-Mbq"/>
@@ -333,6 +343,7 @@
                         <outlet property="CarLiveNumber" destination="oxf-qW-8TZ" id="xr6-di-2lM"/>
                         <outlet property="CarLiveTime" destination="6RK-Nw-lSL" id="906-bR-4nn"/>
                         <outlet property="CarLiveView" destination="6yB-x1-yhy" id="iw7-VV-9qW"/>
+                        <outlet property="CarLiveViewRouting" destination="oob-WW-fb6" id="qqf-o8-lkp"/>
                         <outlet property="CarLiveWalking" destination="CX3-At-DPd" id="FEf-wn-QyX"/>
                         <outlet property="CarName" destination="p3m-14-jxV" id="b9N-QQ-etY"/>
                         <outlet property="CarNumber" destination="0kg-rr-iRK" id="xi0-o7-7sW"/>

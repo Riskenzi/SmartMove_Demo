@@ -83,6 +83,9 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
     @IBOutlet weak var StatusBarMaskView: UIView!
     
     
+    @IBOutlet weak var CarLiveViewRouting: UIView!
+    
+    
 //
     
     var locationManager = CLLocationManager()
@@ -94,7 +97,7 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         super.viewDidLoad()
         MapApple.loadJsonFile()
         loadingPoint()
-    }
+    }//MARK: viewDidLoad
     
     override func viewWillAppear(_ animated: Bool) {
          congigStyleMap()
@@ -111,6 +114,7 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         self.mapView.addSubview(ButtonCarDetail)
         self.mapView.addSubview(CarLiveView)
         self.mapView.addSubview(StatusBarMaskView)
+        self.mapView.addSubview(CarLiveViewRouting)
         ViewCars.isHidden = true
         //MARK: ViewCars hide
         ButtonCarDetail.isHidden = true
@@ -118,6 +122,7 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         CarLiveView.isHidden = true
         
         StatusBarMaskView.isHidden = true
+        CarLiveViewRouting.isHidden = true
         //MARK: buttoncardetail hide
     }
     
@@ -455,10 +460,13 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                             (success: Bool) in
                           self.ViewCars.isHidden = true
                           self.ButtonCarDetail.isHidden = true
+                           //
+                            
                         }
        if self.CarNumberStr != "" {
             //MARK: called showPopView
                           self.ShowLiveCar(CarName: self.CarNameStr, CarNumber: self.CarNumberStr,CarTime: self.timeRound)
+                           self.configeXib()
         }
         //MARK: car liveView info detail
     }
@@ -483,7 +491,10 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                   
                 }
                 CarLiveView.isHidden = false
+                
                 StatusBarMaskView.isHidden = false
+                
+                
             }
         }
     
@@ -493,11 +504,15 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                            self.CarLiveView.alpha = 0
                            self.StatusBarMaskView.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
                             self.StatusBarMaskView.alpha = 0
+        
+                            self.CarLiveViewRouting.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+                            self.CarLiveViewRouting.alpha = 0
                            
                        }){
                            (success: Bool) in
-                         self.CarLiveView.isHidden = true
+                        self.CarLiveView.isHidden = true
                         self.StatusBarMaskView.isHidden = true
+                        self.CarLiveViewRouting.isHidden = true
                        }
         
         if self.mapView.selectedMarker != nil{
@@ -510,6 +525,8 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         
     }
     
+    
+    
         //MARK: - Removing dotted polyline
         func removePolylinePath() {
         for root: GMSCircle in self.polylineArray {
@@ -518,6 +535,26 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                 root.map = nil
             }
         }
+    }
+    
+    func configeXib(){
+        let allViewsInXibArray = Bundle.main.loadNibNamed("RounterView", owner: self, options: nil)
+
+        let myView = allViewsInXibArray?.first as! RounterView
+        myView.frame = self.CarLiveViewRouting.bounds
+        self.CarLiveViewRouting.addSubview(myView)
+        CarLiveViewRouting.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+        CarLiveViewRouting.alpha = 0
+       
+        UIView.animate(withDuration: 0.4)
+        {
+            self.CarLiveViewRouting.alpha = 1
+            self.CarLiveViewRouting.transform = CGAffineTransform.identity
+        }
+        CarLiveViewRouting.isHidden = false
+       // myView.isHidden = false
+       //
+        
     }
     /*
     // MARK: - Navigation
