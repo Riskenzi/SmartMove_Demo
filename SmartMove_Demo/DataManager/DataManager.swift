@@ -15,6 +15,10 @@ class DataManager {
     static let sharedCenter = DataManager()
     //Configurations Api
     var DataPoints = NSMutableDictionary()
+    
+    var CarLiveRoutingLongtitude : Double?
+    var CarLiveRoutingLatitude : Double?
+    var CarLiveAdress : String?
 }
 
 

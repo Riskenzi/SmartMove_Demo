@@ -228,6 +228,9 @@
                                                                     <constraint firstAttribute="height" constant="35" id="iez-sw-Jbv"/>
                                                                 </constraints>
                                                                 <state key="normal" image="drivingButton"/>
+                                                                <connections>
+                                                                    <action selector="CarLiveButtonDriving:" destination="ePk-oQ-tb5" eventType="touchUpInside" id="Rid-Hd-5ze"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CX3-At-DPd">
                                                                 <rect key="frame" x="42" y="0.0" width="35" height="35"/>
@@ -237,6 +240,9 @@
                                                                     <constraint firstAttribute="height" constant="35" id="j9m-RI-3aw"/>
                                                                 </constraints>
                                                                 <state key="normal" image="ButtonWalking"/>
+                                                                <connections>
+                                                                    <action selector="CarLiveButtonWalking:" destination="ePk-oQ-tb5" eventType="touchUpInside" id="kPs-VG-iPv"/>
+                                                                </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6RK-Nw-lSL">
                                                                 <rect key="frame" x="84" y="0.0" width="41.5" height="35"/>

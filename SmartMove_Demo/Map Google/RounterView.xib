@@ -43,7 +43,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xT0-Fq-wLI">
                     <rect key="frame" x="0.0" y="100" width="500" height="100"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 Tottenham Court Road" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="dI2-R6-tiA">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14 Tottenham Court Road" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="dI2-R6-tiA">
                             <rect key="frame" x="16" y="20" width="150" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="150" id="Bps-hG-hkP"/>
@@ -53,7 +53,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFn-Gv-fIK">
-                            <rect key="frame" x="321" y="27" width="150" height="46"/>
+                            <rect key="frame" x="340" y="27" width="150" height="46"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="150" id="mLJ-mn-rgF"/>
@@ -77,7 +77,7 @@
                             </connections>
                         </button>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="EYi-yj-Tnb">
-                            <rect key="frame" x="332" y="35" width="128" height="30"/>
+                            <rect key="frame" x="345" y="35" width="140" height="30"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="qaS-Yj-77P">
                                     <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -88,7 +88,7 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start rounte" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="cbl-Lh-VJx">
-                                    <rect key="frame" x="37" y="0.0" width="91" height="30"/>
+                                    <rect key="frame" x="37" y="0.0" width="103" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -99,13 +99,13 @@
                     </subviews>
                     <color key="backgroundColor" red="0.20392156859999999" green="0.23529411759999999" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="aFn-Gv-fIK" secondAttribute="trailing" constant="29" id="3aA-p3-qxt"/>
+                        <constraint firstAttribute="trailing" secondItem="aFn-Gv-fIK" secondAttribute="trailing" constant="10" id="3aA-p3-qxt"/>
                         <constraint firstItem="aFn-Gv-fIK" firstAttribute="centerY" secondItem="dI2-R6-tiA" secondAttribute="centerY" id="AbF-Sg-aBD"/>
                         <constraint firstItem="dI2-R6-tiA" firstAttribute="leading" secondItem="xT0-Fq-wLI" secondAttribute="leading" constant="16" id="Jxd-st-t9U"/>
                         <constraint firstItem="dI2-R6-tiA" firstAttribute="top" secondItem="xT0-Fq-wLI" secondAttribute="top" constant="20" id="RYy-ae-WDq"/>
                         <constraint firstItem="aFn-Gv-fIK" firstAttribute="top" secondItem="xT0-Fq-wLI" secondAttribute="top" constant="27" id="Sh6-ja-wuX"/>
                         <constraint firstAttribute="bottom" secondItem="dI2-R6-tiA" secondAttribute="bottom" constant="20" id="V7h-pm-gLR"/>
-                        <constraint firstAttribute="trailing" secondItem="EYi-yj-Tnb" secondAttribute="trailing" constant="40" id="Zc5-Kx-6T5"/>
+                        <constraint firstAttribute="trailing" secondItem="EYi-yj-Tnb" secondAttribute="trailing" constant="15" id="Zc5-Kx-6T5"/>
                         <constraint firstItem="aFn-Gv-fIK" firstAttribute="centerY" secondItem="EYi-yj-Tnb" secondAttribute="centerY" id="hc2-y7-Hj4"/>
                         <constraint firstAttribute="bottom" secondItem="EYi-yj-Tnb" secondAttribute="bottom" constant="35" id="lKB-lO-su1"/>
                         <constraint firstItem="aFn-Gv-fIK" firstAttribute="centerX" secondItem="EYi-yj-Tnb" secondAttribute="centerX" id="nTn-qG-25n"/>

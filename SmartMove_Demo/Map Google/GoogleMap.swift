@@ -44,7 +44,6 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
     
     //////
     @IBOutlet weak var mapView: GMSMapView!
-    
 //CarInfo
     
     var CarNameStr : String = ""
@@ -52,6 +51,8 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
     var timeRound : String = ""
     var distRoud : String = ""
     var CarPosition : CLLocationCoordinate2D?
+    var CarSelectID : String = ""
+
 // MARK: CarLiveView
     @IBOutlet weak var CarLiveView: UIView!
     
@@ -192,6 +193,8 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         //MARK: Did tap
         //MARK:  remove  currently selected marker
         if let selectedMarker = mapView.selectedMarker{
+            
+            if selectedMarker.userData != nil{
             selectedMarker.icon = drawImageWithProfilePic(pp: marker_img!, image: car_img!)
             
             UIView.animate(withDuration: 0.3, animations: {
@@ -206,9 +209,12 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                     self.ViewCars.isHidden = true
                     self.ButtonCarDetail.isHidden = true
                   }
+            }
         }
         //MARK:  select new marker and make navigation and selected border
+      
         mapView.selectedMarker = marker
+        if marker.userData  != nil {
         print("user tabed car from id :",marker.userData as! String)
         let id = marker.userData as! String
         let userPosition = locationManager.location?.coordinate
@@ -218,6 +224,7 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         let image_stoked =  marker_img_old?.stroked(with: hexStringToUIColor(hex: "4285f4"), size: 3)
         let marker_img_new = image_stoked?.rotate(radians: .pi)
         marker.icon = marker_img_new
+        
         if userPosition != nil{
             
             draw(src: userPosition!, dst: poinPosition)
@@ -225,7 +232,11 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
             self.CarNameStr = ((DataManager.sharedCenter.DataPoints.object(forKey: id) as! PinLocations).name!)
             self.CarNumberStr = ((DataManager.sharedCenter.DataPoints.object(forKey: id) as! PinLocations).favouriteArtist!)
             self.CarPosition = marker.position
+            self.CarSelectID = marker.userData as! String
+            latLong(lat: marker.position.latitude, long: marker.position.longitude)
+            }
         }
+       
         
         return true
     }
@@ -359,6 +370,7 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                                 
                                 self.time.text = durationRoutes!
                                 self.distantion.text = distanceRoutes!
+                                self.CarLiveTime.text = durationRoutes!
                             })
                         }
 
@@ -465,7 +477,9 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                         }
        if self.CarNumberStr != "" {
             //MARK: called showPopView
-                          self.ShowLiveCar(CarName: self.CarNameStr, CarNumber: self.CarNumberStr,CarTime: self.timeRound)
+        
+        
+                          self.ShowLiveCar(CarName: self.CarNameStr, CarNumber: self.CarNumberStr,CarTime: self.distRoud)
                            self.configeXib()
         }
         //MARK: car liveView info detail
@@ -476,7 +490,7 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
             if CarName.count != 0 {
                 self.CarLiveName.text = CarName
                 self.CarLiveNumber.text = CarNumber
-                self.time.text = CarTime
+                self.CarLiveTime.text = CarTime
                 CarLiveView.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
                 CarLiveView.alpha = 0
                 StatusBarMaskView.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
@@ -495,6 +509,25 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                 StatusBarMaskView.isHidden = false
                 
                 
+            }
+                if CarPosition != nil{
+                    // MARK: Clear map and add selected point and draw path from curren location user
+                    mapView.clear()
+                    let marker = GMSMarker()
+                    let userPosition = locationManager.location?.coordinate
+                    marker.position = CarPosition!
+                    marker.icon = drawImageWithProfilePic(pp: marker_img!, image: car_img!)
+                    marker.appearAnimation = GMSMarkerAnimation.pop
+                    let marker_img_old = marker.icon
+                    let image_stoked =  marker_img_old?.stroked(with: hexStringToUIColor(hex: "4285f4"), size: 3)
+                    let marker_img_new = image_stoked?.rotate(radians: .pi)
+                    marker.icon = marker_img_new
+                    marker.map = mapView
+                    drawButton(src: userPosition!, dst: marker.position, mode: "walking")
+                    print(CarSelectID)
+                    DataManager.sharedCenter.CarLiveRoutingLatitude = marker.position.latitude
+                    DataManager.sharedCenter.CarLiveRoutingLongtitude = marker.position.longitude
+                   
             }
         }
     
@@ -521,10 +554,42 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
             self.removePolylinePath()
         }
         
-        
+        mapView.clear()
+        loadingPoint()
         
     }
     
+    
+    @IBAction func CarLiveButtonDriving(_ sender: Any) {
+        print("driving")
+               //MARK: driving
+           CarLiveDriving.setImage(UIImage(named: "car_white"), for: .normal)
+                     CarLiveWalking.setImage(UIImage(named: "walking_black"), for: .normal)
+                     CarLiveDriving.backgroundColor = hexStringToUIColor(hex: "343C44")
+                     CarLiveWalking.backgroundColor = hexStringToUIColor(hex: "ebeced")
+                     let location = locationManager.location?.coordinate
+                     if CarPosition != nil{
+                         drawButton(src: location!, dst: CarPosition!, mode: "driving")
+                        
+                            }
+        
+    }
+    
+    @IBAction func CarLiveButtonWalking(_ sender: Any) {
+        
+               print("walking")
+               CarLiveDriving.setImage(UIImage(named: "drivingButton"), for: .normal)
+               CarLiveWalking.setImage(UIImage(named: "ButtonWalking"), for: .normal)
+               CarLiveDriving.backgroundColor = hexStringToUIColor(hex: "ebeced")
+               CarLiveWalking.backgroundColor = hexStringToUIColor(hex: "343C44")
+               let location = locationManager.location?.coordinate
+               if CarPosition != nil{
+                   drawButton(src: location!, dst: CarPosition!, mode: "walking")
+                
+               }
+               
+               //MARK: walking
+    }
     
     
         //MARK: - Removing dotted polyline
@@ -539,10 +604,13 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
     
     func configeXib(){
         let allViewsInXibArray = Bundle.main.loadNibNamed("RounterView", owner: self, options: nil)
-
+        
         let myView = allViewsInXibArray?.first as! RounterView
+        
         myView.frame = self.CarLiveViewRouting.bounds
         self.CarLiveViewRouting.addSubview(myView)
+        
+        myView.AddressLabel.text = DataManager.sharedCenter.CarLiveAdress
         CarLiveViewRouting.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
         CarLiveViewRouting.alpha = 0
        
@@ -552,10 +620,59 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
             self.CarLiveViewRouting.transform = CGAffineTransform.identity
         }
         CarLiveViewRouting.isHidden = false
-       // myView.isHidden = false
-       //
-        
     }
+    
+    
+    
+    
+      func latLong(lat: Double,long: Double)  {
+
+        let geoCoder = CLGeocoder()
+        let location = CLLocation(latitude: lat , longitude: long)
+        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+
+            print("Response GeoLocation : \(placemarks)")
+            var placeMark: CLPlacemark!
+            placeMark = placemarks?[0]
+
+            // Country
+            if let country = placeMark.addressDictionary!["Country"] as? String {
+                print("Country :- \(country)")
+                // City
+                if let city = placeMark.addressDictionary!["City"] as? String {
+                    print("City :- \(city)")
+                    // State
+                    if let state = placeMark.addressDictionary!["State"] as? String{
+                        print("State :- \(state)")
+                        // Street
+                        if let street = placeMark.addressDictionary!["Street"] as? String{
+                            print("Street :- \(street)")
+                            DataManager.sharedCenter.CarLiveAdress = street
+                            let str = street
+                            let streetNumber = str.components(
+                                separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
+                            print("streetNumber :- \(streetNumber)" as Any)
+                            
+                            // ZIP
+                            if let zip = placeMark.addressDictionary!["ZIP"] as? String{
+                                print("ZIP :- \(zip)")
+                                // Location name
+                                if let locationName = placeMark?.addressDictionary?["Name"] as? String {
+                                    print("Location Name :- \(locationName)")
+                                    // Street address
+                                    if let thoroughfare = placeMark?.addressDictionary!["Thoroughfare"] as? NSString {
+                                    print("Thoroughfare :- \(thoroughfare)")
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }
+    
     /*
     // MARK: - Navigation
 
