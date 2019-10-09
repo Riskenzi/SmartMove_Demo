@@ -22,6 +22,7 @@
 		F4040B87233B8034009D3F3C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4040B86233B8034009D3F3C /* DataManager.swift */; };
 		F4040B89233B976C009D3F3C /* CarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4040B88233B976C009D3F3C /* CarItem.swift */; };
 		F42BB335233DFAF3006CD20C /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42BB334233DFAF2006CD20C /* UIImage+Extension.swift */; };
+		F459BA56234CCC9300C95120 /* PopupViewUnlockerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F459BA55234CCC9300C95120 /* PopupViewUnlockerController.swift */; };
 		F46ABCCC2347614900DC4B78 /* RounterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F46ABCCB2347614900DC4B78 /* RounterView.xib */; };
 		F46ABCD0234765B100DC4B78 /* RounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46ABCCF234765B100DC4B78 /* RounterView.swift */; };
 		F4EF004F233CC69400F3E4F9 /* GoogleMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF004E233CC69400F3E4F9 /* GoogleMap.swift */; };
@@ -48,6 +49,7 @@
 		F4040B86233B8034009D3F3C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		F4040B88233B976C009D3F3C /* CarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarItem.swift; sourceTree = "<group>"; };
 		F42BB334233DFAF2006CD20C /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		F459BA55234CCC9300C95120 /* PopupViewUnlockerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewUnlockerController.swift; sourceTree = "<group>"; };
 		F46ABCCB2347614900DC4B78 /* RounterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RounterView.xib; sourceTree = "<group>"; };
 		F46ABCCF234765B100DC4B78 /* RounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RounterView.swift; sourceTree = "<group>"; };
 		F4EF004E233CC69400F3E4F9 /* GoogleMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMap.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				F42BB334233DFAF2006CD20C /* UIImage+Extension.swift */,
 				F46ABCCB2347614900DC4B78 /* RounterView.xib */,
 				F46ABCCF234765B100DC4B78 /* RounterView.swift */,
+				F459BA55234CCC9300C95120 /* PopupViewUnlockerController.swift */,
 			);
 			path = "Map Google";
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 			files = (
 				F4040B67233B4899009D3F3C /* ViewController.swift in Sources */,
 				F4040B7E233B55B6009D3F3C /* MapPin.swift in Sources */,
+				F459BA56234CCC9300C95120 /* PopupViewUnlockerController.swift in Sources */,
 				F4040B89233B976C009D3F3C /* CarItem.swift in Sources */,
 				F4040B84233B65DB009D3F3C /* PinLocations.swift in Sources */,
 				F4EF004F233CC69400F3E4F9 /* GoogleMap.swift in Sources */,

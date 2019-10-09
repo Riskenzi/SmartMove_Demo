@@ -16,7 +16,17 @@ class ViewController: UIViewController {
     }
     
     
-
+    @IBAction func test(_ sender: Any) {
+//        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let newViewController = storyBoard.instantiateViewController(withIdentifier: "PopupViewUnlockerController") as! PopupViewUnlockerController
+//        newViewController.modalPresentationStyle = .fullScreen
+//         self.navigationController?.pushViewController(newViewController, animated: true)
+        
+        let secondViewController:GoogleMap = GoogleMap()
+        self.show(secondViewController, sender: nil)
+       // self.present(secondViewController, animated: true, completion: nil)
+    }
+    
 
 }
 

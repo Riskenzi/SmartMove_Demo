@@ -7,23 +7,27 @@ PODS:
   - GooglePlaces (3.4.0):
     - GoogleMaps/Base (= 3.4.0)
   - MapKitGoogleStyler (0.1.1)
+  - MIBlurPopup (0.2.0)
 
 DEPENDENCIES:
   - GoogleMaps
   - GooglePlaces
   - MapKitGoogleStyler
+  - MIBlurPopup
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - GoogleMaps
     - GooglePlaces
     - MapKitGoogleStyler
+    - MIBlurPopup
 
 SPEC CHECKSUMS:
   GoogleMaps: 67f4a604f80dd6a22d09c2a507a3a395b9f23060
   GooglePlaces: 7547289e3fffc8980f4a027be99888e29d59b15d
   MapKitGoogleStyler: 8efdceb664fc1748a62a9e3b50a34b67a34247bc
+  MIBlurPopup: 89c93626177602b3164673c9bf7d6b2ef388cd95
 
-PODFILE CHECKSUM: dde07fba89d7e2a49a6a348f92feea62dff82e1f
+PODFILE CHECKSUM: 1b9682751cd4e5f2495286c4a768eceeaa8c70d5
 
 COCOAPODS: 1.7.2

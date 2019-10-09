@@ -8,7 +8,8 @@
 
 import UIKit
 import GoogleMaps
-class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
+import MIBlurPopup
+class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
     @IBOutlet weak var ViewCars: UIView!
     ///view info
     @IBOutlet weak var time: UILabel!
@@ -98,6 +99,13 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         super.viewDidLoad()
         MapApple.loadJsonFile()
         loadingPoint()
+        
+
+        
+
+
+        
+        
     }//MARK: viewDidLoad
     
     override func viewWillAppear(_ animated: Bool) {
@@ -554,11 +562,20 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
             self.removePolylinePath()
         }
         
-        mapView.clear()
-        loadingPoint()
+//        let secondViewController:PopupViewUnlockerController = PopupViewUnlockerController()
+//        self.show(secondViewController, sender: nil)
         
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "PopupViewUnlockerController") as! PopupViewUnlockerController
+       // self.navigationController?.pushViewController(newViewController, animated: true)
+        self.navigationController?.show(newViewController, sender: true)
+        
+        mapView.clear()
+        //MARK: cheak tommorow
+        loadingPoint()
+
     }
-    
+
     
     @IBAction func CarLiveButtonDriving(_ sender: Any) {
         print("driving")
