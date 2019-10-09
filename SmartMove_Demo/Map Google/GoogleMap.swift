@@ -93,7 +93,7 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
     let MapApple : Map = Map()
     let marker_img = UIImage(named: "car")
     let car_img = UIImage(named: "marker")
-    private var polylineArray:[GMSCircle] = [GMSCircle]() //global variable
+    public var polylineArray:[GMSCircle] = [GMSCircle]() //global variable
     override func viewDidLoad() {
         super.viewDidLoad()
         MapApple.loadJsonFile()
@@ -127,14 +127,6 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         //MARK: buttoncardetail hide
     }
     
-    func congigStyleMap(){
-    do {
-        //MARK:  Set the map style by passing the URL of the local file.
-        if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
-            mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)} else {
-            NSLog("Unable to find style.json")}}
-        catch {NSLog("One or more of the map styles failed to load. \(error)")}
-    }
     
     func loadingPoint(){
       //MARK: loading point
@@ -157,38 +149,61 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
             }
        }
     
-  //MARK: put this code in your viewController class
-    func drawImageWithProfilePic(pp: UIImage, image: UIImage) -> UIImage {
-            
-           let imgView = UIImageView(image: image)
-           imgView.frame = CGRect(x: 0, y: 0, width: 65, height: 65)
-
-           let picImgView = UIImageView(image: pp)
-           picImgView.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
-
-           imgView.addSubview(picImgView)
-           picImgView.center.x = imgView.center.x
-           picImgView.center.y = imgView.center.y - 7
-           picImgView.layer.cornerRadius = picImgView.frame.width/2
-           picImgView.clipsToBounds = true
-           imgView.setNeedsLayout()
-           picImgView.setNeedsLayout()
-
-           let newImage = imageWithView(view: imgView)
-           return newImage
-       }
-
-       func imageWithView(view: UIView) -> UIImage {
-           var image: UIImage?
-           UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 0.0)
-           if let context = UIGraphicsGetCurrentContext() {
-               view.layer.render(in: context)
-               image = UIGraphicsGetImageFromCurrentImageContext()
-               UIGraphicsEndImageContext()
-           }
-           return image ?? UIImage()
-       }
-    
+    func AnimationManager(View : UIView , Button : UIButton, mode : String, BarView : UIView,RoutingView : UIView){
+        switch mode {
+        case "delete":
+            UIView.animate(withDuration: 0.3, animations: {
+                      View.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+                      View.alpha = 0
+                      Button.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+                      Button.alpha = 0
+                   }){(success: Bool) in
+                      View.isHidden = true
+                      Button.isHidden = true
+                   }
+        case "show":
+            View.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+                   View.alpha = 0
+                   Button.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+                   Button.alpha = 0
+                   UIView.animate(withDuration: 0.4){
+                       View.alpha = 1
+                       View.transform = CGAffineTransform.identity
+                       Button.alpha = 1
+                       Button.transform = CGAffineTransform.identity
+                   }
+                   View.isHidden = false
+                   Button.isHidden = false
+        case "deleteLive" :
+            UIView.animate(withDuration: 0.3, animations: {
+                       View.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+                       View.alpha = 0
+                       BarView.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+                       BarView.alpha = 0
+                       RoutingView.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+                       RoutingView.alpha = 0}){(success: Bool) in
+                           View.isHidden = true
+                           BarView.isHidden = true
+                           RoutingView.isHidden = true
+                       }
+        case "showLive" :
+            View.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+            View.alpha = 0
+            BarView.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
+            BarView.alpha = 0
+            UIView.animate(withDuration: 0.4){
+                              View.alpha = 1
+                              View.transform = CGAffineTransform.identity
+                              BarView.alpha = 1
+                              BarView.transform = CGAffineTransform.identity
+                     }
+            View.isHidden = false
+            BarView.isHidden = false
+        default:
+            print("default")
+        }
+        
+    }
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         //MARK: Did tap
         //MARK:  remove  currently selected marker
@@ -196,19 +211,7 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
             
             if selectedMarker.userData != nil{
             selectedMarker.icon = drawImageWithProfilePic(pp: marker_img!, image: car_img!)
-            
-            UIView.animate(withDuration: 0.3, animations: {
-                      self.ViewCars.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
-                      self.ViewCars.alpha = 0
-                      self.ButtonCarDetail.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
-                      self.ButtonCarDetail.alpha = 0
-                      
-                      
-                  }){
-                      (success: Bool) in
-                    self.ViewCars.isHidden = true
-                    self.ButtonCarDetail.isHidden = true
-                  }
+                AnimationManager(View: self.ViewCars, Button: self.ButtonCarDetail, mode: "delete", BarView: self.StatusBarMaskView, RoutingView: self.CarLiveViewRouting)
             }
         }
         //MARK:  select new marker and make navigation and selected border
@@ -226,8 +229,7 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         marker.icon = marker_img_new
         
         if userPosition != nil{
-            
-            draw(src: userPosition!, dst: poinPosition)
+            drawPolilyne(src: userPosition!, dst: poinPosition, mode: "walking", state: "Draw")
             //MARK: par1 data
             self.CarNameStr = ((DataManager.sharedCenter.DataPoints.object(forKey: id) as! PinLocations).name!)
             self.CarNumberStr = ((DataManager.sharedCenter.DataPoints.object(forKey: id) as! PinLocations).favouriteArtist!)
@@ -236,41 +238,27 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
             latLong(lat: marker.position.latitude, long: marker.position.longitude)
             }
         }
-       
-        
         return true
     }
     
     func ShowPopView(CarName : String,CarNumber : String, CarDist : String, CarTime : String){
-//MARK: Show popapView
+
         if CarName.count != 0 {
             self.CarName.text = CarName
             self.CarNumber.text = CarNumber
             self.time.text = CarTime
             self.distantion.text = CarDist
-            ViewCars.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
-            ViewCars.alpha = 0
-            ButtonCarDetail.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
-            ButtonCarDetail.alpha = 0
-            UIView.animate(withDuration: 0.4)
-            {
-                self.ViewCars.alpha = 1
-                self.ViewCars.transform = CGAffineTransform.identity
-                self.ButtonCarDetail.alpha = 1
-                self.ButtonCarDetail.transform = CGAffineTransform.identity
-            }
-            ViewCars.isHidden = false
-            ButtonCarDetail.isHidden = false
+             AnimationManager(View: self.ViewCars, Button: self.ButtonCarDetail, mode: "show", BarView: self.StatusBarMaskView, RoutingView: self.CarLiveViewRouting)
         }
-    }
-//MARK: location manager
+    }//MARK: Show popapView
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
               
               if let location = locations.last {
                 mapView.camera = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 14.0)
                 locationManager.stopUpdatingLocation() //need fix
               }
-    }
+    }//MARK: location manager
           
       //    @IBAction func refLocation(_ sender: Any) {
       //        locationManager.startUpdatingLocation()
@@ -280,207 +268,56 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
               print("Unable to access your current location")
           }//MARK: current location user
   
-    func draw(src: CLLocationCoordinate2D, dst: CLLocationCoordinate2D){
-//MARK: draw polilyne
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-
-        let url = URL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=\(src.latitude),\(src.longitude)&destination=\(dst.latitude),\(dst.longitude)&sensor=false&mode=walking&key=AIzaSyDNaomwPpfEWP5YIwuK74m8-DNog7v5gho")!
-
-        let task = session.dataTask(with: url, completionHandler: {
-            (data, response, error) in
-            if error != nil {
-                print(error!.localizedDescription)
-            } else {
-                do {
-                    if let json : [String:Any] = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any] {
-                    
-                        let preRoutes = json["routes"] as! NSArray
-                        
-                        let routes = preRoutes[0] as! NSDictionary
-                        let routeOverviewPolyline:NSDictionary = routes.value(forKey: "overview_polyline") as! NSDictionary
-                        
-                        let polyString = routeOverviewPolyline.object(forKey: "points") as! String
-                        let timeRoures : NSArray = routes.value(forKey: "legs") as! NSArray
-                        let timeRoutes = timeRoures[0] as! NSDictionary
-                        let distanceRoute : NSDictionary = timeRoutes.value(forKey: "distance") as! NSDictionary
-                        let durationRoute : NSDictionary = timeRoutes.value(forKey: "duration") as! NSDictionary
-                        
-                        let distanceRoutes = distanceRoute.object(forKey: "text") as! String?
-                        let durationRoutes = durationRoute.object(forKey: "text") as! String?
-                       
-                        DispatchQueue.main.async(execute: {
-                            self.timeRound = distanceRoutes!
-                            self.distRoud = durationRoutes!
-                            //
-                            self.showPath(polyStr: polyString)
-                            //MARK: part2 data
-                            
-                            if self.CarNumberStr != "" {
-                                //MARK: called showPopView
-                            self.ShowPopView(CarName: self.CarNameStr, CarNumber: self.CarNumberStr, CarDist: self.timeRound, CarTime: self.distRoud)
-                            }
-                        })
-                    }
-
-                } catch {
-                    print("parsing error")
-                }
-            }
-        })
-        task.resume()
-    }//MARK: draw api
-    
-    
-    func drawButton(src: CLLocationCoordinate2D, dst: CLLocationCoordinate2D, mode : String){
-    //MARK: draw polilyne
-            let config = URLSessionConfiguration.default
-            let session = URLSession(configuration: config)
-
-            let url = URL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=\(src.latitude),\(src.longitude)&destination=\(dst.latitude),\(dst.longitude)&sensor=false&mode=\(mode)&key=AIzaSyDNaomwPpfEWP5YIwuK74m8-DNog7v5gho")!
-
-            let task = session.dataTask(with: url, completionHandler: {
-                (data, response, error) in
-                if error != nil {
-                    print(error!.localizedDescription)
-                } else {
-                    do {
-                        if let json : [String:Any] = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any] {
-                        
-                            let preRoutes = json["routes"] as! NSArray
-                            
-                            let routes = preRoutes[0] as! NSDictionary
-                            let routeOverviewPolyline:NSDictionary = routes.value(forKey: "overview_polyline") as! NSDictionary
-                            
-                            let polyString = routeOverviewPolyline.object(forKey: "points") as! String
-                            let timeRoures : NSArray = routes.value(forKey: "legs") as! NSArray
-                            let timeRoutes = timeRoures[0] as! NSDictionary
-                            let distanceRoute : NSDictionary = timeRoutes.value(forKey: "distance") as! NSDictionary
-                            let durationRoute : NSDictionary = timeRoutes.value(forKey: "duration") as! NSDictionary
-                            
-                            let distanceRoutes = distanceRoute.object(forKey: "text") as! String?
-                            let durationRoutes = durationRoute.object(forKey: "text") as! String?
-                           
-                            DispatchQueue.main.async(execute: {
-                                self.timeRound = distanceRoutes!
-                                self.distRoud = durationRoutes!
-                                //
-                                self.showPath(polyStr: polyString)
-                                //MARK: part2 data
-                                
-                                self.time.text = durationRoutes!
-                                self.distantion.text = distanceRoutes!
-                                self.CarLiveTime.text = durationRoutes!
-                            })
-                        }
-
-                    } catch {
-                        print("parsing error")
-                    }
-                }
-            })
-            task.resume()
-        }//MARK: draw api
+    @IBAction func ButtonModeDriving(_ sender: UIButton) {
         
-    //MARK: Draw polyline
-
-    func showPath(polyStr :String) {
-        
-        guard let path = GMSMutablePath(fromEncodedPath: polyStr) else {return}
-        //MARK: remove the old polyline from the GoogleMap
-        self.removePolylinePath()
-
-        let intervalDistanceIncrement: CGFloat = 10
-        let circleRadiusScale = 1 / mapView.projection.points(forMeters: 1, at: mapView.camera.target)
-        var previousCircle: GMSCircle?
-        for coordinateIndex in 0 ..< path.count() - 1 {
-            let startCoordinate = path.coordinate(at: coordinateIndex)
-            let endCoordinate = path.coordinate(at: coordinateIndex + 1)
-            let startLocation = CLLocation(latitude: startCoordinate.latitude, longitude: startCoordinate.longitude)
-            let endLocation = CLLocation(latitude: endCoordinate.latitude, longitude: endCoordinate.longitude)
-            let pathDistance = endLocation.distance(from: startLocation)
-            let intervalLatIncrement = (endLocation.coordinate.latitude - startLocation.coordinate.latitude) / pathDistance
-            let intervalLngIncrement = (endLocation.coordinate.longitude - startLocation.coordinate.longitude) / pathDistance
-            for intervalDistance in 0 ..< Int(pathDistance) {
-                let intervalLat = startLocation.coordinate.latitude + (intervalLatIncrement * Double(intervalDistance))
-                let intervalLng = startLocation.coordinate.longitude + (intervalLngIncrement * Double(intervalDistance))
-                let circleCoordinate = CLLocationCoordinate2D(latitude: intervalLat, longitude: intervalLng)
-                if let previousCircle = previousCircle {
-                    let circleLocation = CLLocation(latitude: circleCoordinate.latitude,
-                                                    longitude: circleCoordinate.longitude)
-                    let previousCircleLocation = CLLocation(latitude: previousCircle.position.latitude,
-                                                            longitude: previousCircle.position.longitude)
-                    if mapView.projection.points(forMeters: circleLocation.distance(from: previousCircleLocation),
-                                                 at: mapView.camera.target) < intervalDistanceIncrement {
-                        continue
-                    }
-                }
-                let circleRadius = 3 * CLLocationDistance(circleRadiusScale)
-                let circle = GMSCircle(position: circleCoordinate, radius: circleRadius)
-                circle.strokeWidth = 1.0
-                circle.strokeColor =  hexStringToUIColor(hex: "4285f4")
-                circle.fillColor = hexStringToUIColor(hex: "4285f4")
-                circle.map = mapView
-                circle.userData = "root"
-                polylineArray.append(circle)
-                previousCircle = circle
-             //
-
-            }
+        switch sender.tag {
+        case 1:
+             ModeNavigation(mode: "driving", driving: ButtonDriving, walking: ButtonWalking)
+        case 2:
+             ModeNavigation(mode: "walking", driving: ButtonDriving, walking: ButtonWalking)
+        case 3:
+             ModeNavigation(mode: "driving", driving: CarLiveDriving, walking: CarLiveWalking)
+        case 4:
+             ModeNavigation(mode: "walking", driving: CarLiveDriving, walking: CarLiveWalking)
+        default:
+            print("default")
         }
-    } //path creator
-  
-
-    @IBAction func ClickDriving(_ sender: Any) {
-        print("driving")
-        //MARK: driving
-        ButtonDriving.setImage(UIImage(named: "car_white"), for: .normal)
-        ButtonWalking.setImage(UIImage(named: "walking_black"), for: .normal)
-        ButtonDriving.backgroundColor = hexStringToUIColor(hex: "343C44")
-        ButtonWalking.backgroundColor = hexStringToUIColor(hex: "ebeced")
-        let location = locationManager.location?.coordinate
-        if CarPosition != nil{
-            drawButton(src: location!, dst: CarPosition!, mode: "driving")
-               }
-        
-    }
+    }//MARK: ButtonModeDriving
     
-    @IBAction func ClickWalking(_ sender: Any) {
-        print("walking")
-        ButtonDriving.setImage(UIImage(named: "drivingButton"), for: .normal)
-        ButtonWalking.setImage(UIImage(named: "ButtonWalking"), for: .normal)
-        ButtonDriving.backgroundColor = hexStringToUIColor(hex: "ebeced")
-        ButtonWalking.backgroundColor = hexStringToUIColor(hex: "343C44")
-        let location = locationManager.location?.coordinate
-        if CarPosition != nil{
-            drawButton(src: location!, dst: CarPosition!, mode: "walking")
+    func ModeNavigation(mode : String , driving : UIButton , walking : UIButton)
+    {
+        
+        switch mode {
+        case "driving":
+            driving.setImage(UIImage(named: "car_white"), for: .normal)
+            walking.setImage(UIImage(named: "walking_black"), for: .normal)
+            driving.backgroundColor = hexStringToUIColor(hex: "343C44")
+            walking.backgroundColor = hexStringToUIColor(hex: "ebeced")
+            let location = locationManager.location?.coordinate
+            if CarPosition != nil{
+                drawPolilyne(src: location!, dst: CarPosition!, mode: "driving", state: "ButtonDraw")
+                       }
+        case "walking" :
+            driving.setImage(UIImage(named: "drivingButton"), for: .normal)
+            walking.setImage(UIImage(named: "ButtonWalking"), for: .normal)
+            driving.backgroundColor = hexStringToUIColor(hex: "ebeced")
+            walking.backgroundColor = hexStringToUIColor(hex: "343C44")
+            let location = locationManager.location?.coordinate
+            if CarPosition != nil{
+                drawPolilyne(src: location!, dst: CarPosition!, mode: "walking", state: "ButtonDraw")
+            }
+        default:
+            print("default")
         }
-       
-        //MARK: walking
     }
     
     @IBAction func ClickCarSelected(_ sender: Any) {
         print("ClickCarSelected")
-        UIView.animate(withDuration: 0.3, animations: {
-                            self.ViewCars.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
-                            self.ViewCars.alpha = 0
-                            self.ButtonCarDetail.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
-                            self.ButtonCarDetail.alpha = 0
-                            
-                            
-                        }){
-                            (success: Bool) in
-                          self.ViewCars.isHidden = true
-                          self.ButtonCarDetail.isHidden = true
-                           //
-                            
-                        }
+        AnimationManager(View: self.ViewCars, Button: self.ButtonCarDetail, mode: "delete", BarView: self.StatusBarMaskView, RoutingView: self.CarLiveViewRouting)
        if self.CarNumberStr != "" {
             //MARK: called showPopView
-        
-        
-                          self.ShowLiveCar(CarName: self.CarNameStr, CarNumber: self.CarNumberStr,CarTime: self.distRoud)
-                           self.configeXib()
+        self.ShowLiveCar(CarName: self.CarNameStr, CarNumber: self.CarNumberStr,CarTime: self.distRoud)
+        self.configeXib()
         }
         //MARK: car liveView info detail
     }
@@ -491,24 +328,8 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                 self.CarLiveName.text = CarName
                 self.CarLiveNumber.text = CarNumber
                 self.CarLiveTime.text = CarTime
-                CarLiveView.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
-                CarLiveView.alpha = 0
-                StatusBarMaskView.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
-                StatusBarMaskView.alpha = 0
                 self.navItemTitle.title = "You car is waiting for you"
-                UIView.animate(withDuration: 0.4)
-                {
-                    self.CarLiveView.alpha = 1
-                    self.CarLiveView.transform = CGAffineTransform.identity
-                    self.StatusBarMaskView.alpha = 1
-                    self.StatusBarMaskView.transform = CGAffineTransform.identity
-                  
-                }
-                CarLiveView.isHidden = false
-                
-                StatusBarMaskView.isHidden = false
-                
-                
+                AnimationManager(View: self.CarLiveView, Button: self.ButtonCarDetail, mode: "showLive", BarView: self.StatusBarMaskView, RoutingView: self.CarLiveViewRouting)
             }
                 if CarPosition != nil{
                     // MARK: Clear map and add selected point and draw path from curren location user
@@ -523,31 +344,16 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                     let marker_img_new = image_stoked?.rotate(radians: .pi)
                     marker.icon = marker_img_new
                     marker.map = mapView
-                    drawButton(src: userPosition!, dst: marker.position, mode: "walking")
+                    drawPolilyne(src: userPosition!, dst: marker.position, mode: "walking",state: "ButtonDraw")
                     print(CarSelectID)
                     DataManager.sharedCenter.CarLiveRoutingLatitude = marker.position.latitude
                     DataManager.sharedCenter.CarLiveRoutingLongtitude = marker.position.longitude
-                   
-            }
+                }
         }
     
     @IBAction func CarViewTabClose(_ sender: Any) {
-        UIView.animate(withDuration: 0.3, animations: {
-                           self.CarLiveView.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
-                           self.CarLiveView.alpha = 0
-                           self.StatusBarMaskView.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
-                            self.StatusBarMaskView.alpha = 0
-        
-                            self.CarLiveViewRouting.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
-                            self.CarLiveViewRouting.alpha = 0
-                           
-                       }){
-                           (success: Bool) in
-                        self.CarLiveView.isHidden = true
-                        self.StatusBarMaskView.isHidden = true
-                        self.CarLiveViewRouting.isHidden = true
-                       }
-        
+  
+        AnimationManager(View: self.CarLiveView, Button: self.ButtonCarDetail, mode: "deleteLive", BarView: self.StatusBarMaskView, RoutingView: self.CarLiveViewRouting)
         if self.mapView.selectedMarker != nil{
             self.mapView.selectedMarker!.icon = drawImageWithProfilePic(pp: marker_img!, image: car_img!)
             self.mapView.selectedMarker = nil
@@ -558,129 +364,5 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         loadingPoint()
         
     }
-    
-    
-    @IBAction func CarLiveButtonDriving(_ sender: Any) {
-        print("driving")
-               //MARK: driving
-           CarLiveDriving.setImage(UIImage(named: "car_white"), for: .normal)
-                     CarLiveWalking.setImage(UIImage(named: "walking_black"), for: .normal)
-                     CarLiveDriving.backgroundColor = hexStringToUIColor(hex: "343C44")
-                     CarLiveWalking.backgroundColor = hexStringToUIColor(hex: "ebeced")
-                     let location = locationManager.location?.coordinate
-                     if CarPosition != nil{
-                         drawButton(src: location!, dst: CarPosition!, mode: "driving")
-                        
-                            }
-        
-    }
-    
-    @IBAction func CarLiveButtonWalking(_ sender: Any) {
-        
-               print("walking")
-               CarLiveDriving.setImage(UIImage(named: "drivingButton"), for: .normal)
-               CarLiveWalking.setImage(UIImage(named: "ButtonWalking"), for: .normal)
-               CarLiveDriving.backgroundColor = hexStringToUIColor(hex: "ebeced")
-               CarLiveWalking.backgroundColor = hexStringToUIColor(hex: "343C44")
-               let location = locationManager.location?.coordinate
-               if CarPosition != nil{
-                   drawButton(src: location!, dst: CarPosition!, mode: "walking")
-                
-               }
-               
-               //MARK: walking
-    }
-    
-    
-        //MARK: - Removing dotted polyline
-        func removePolylinePath() {
-        for root: GMSCircle in self.polylineArray {
-            if let userData = root.userData as? String,
-                userData == "root" {
-                root.map = nil
-            }
-        }
-    }
-    
-    func configeXib(){
-        let allViewsInXibArray = Bundle.main.loadNibNamed("RounterView", owner: self, options: nil)
-        
-        let myView = allViewsInXibArray?.first as! RounterView
-        
-        myView.frame = self.CarLiveViewRouting.bounds
-        self.CarLiveViewRouting.addSubview(myView)
-        
-        myView.AddressLabel.text = DataManager.sharedCenter.CarLiveAdress
-        CarLiveViewRouting.transform = CGAffineTransform.init(scaleX:1.3, y: 1.3)
-        CarLiveViewRouting.alpha = 0
-       
-        UIView.animate(withDuration: 0.4)
-        {
-            self.CarLiveViewRouting.alpha = 1
-            self.CarLiveViewRouting.transform = CGAffineTransform.identity
-        }
-        CarLiveViewRouting.isHidden = false
-    }
-    
-    
-    
-    
-      func latLong(lat: Double,long: Double)  {
-
-        let geoCoder = CLGeocoder()
-        let location = CLLocation(latitude: lat , longitude: long)
-        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
-
-            print("Response GeoLocation : \(placemarks)")
-            var placeMark: CLPlacemark!
-            placeMark = placemarks?[0]
-
-            // Country
-            if let country = placeMark.addressDictionary!["Country"] as? String {
-                print("Country :- \(country)")
-                // City
-                if let city = placeMark.addressDictionary!["City"] as? String {
-                    print("City :- \(city)")
-                    // State
-                    if let state = placeMark.addressDictionary!["State"] as? String{
-                        print("State :- \(state)")
-                        // Street
-                        if let street = placeMark.addressDictionary!["Street"] as? String{
-                            print("Street :- \(street)")
-                            DataManager.sharedCenter.CarLiveAdress = street
-                            let str = street
-                            let streetNumber = str.components(
-                                separatedBy: NSCharacterSet.decimalDigits.inverted).joined(separator: "")
-                            print("streetNumber :- \(streetNumber)" as Any)
-                            
-                            // ZIP
-                            if let zip = placeMark.addressDictionary!["ZIP"] as? String{
-                                print("ZIP :- \(zip)")
-                                // Location name
-                                if let locationName = placeMark?.addressDictionary?["Name"] as? String {
-                                    print("Location Name :- \(locationName)")
-                                    // Street address
-                                    if let thoroughfare = placeMark?.addressDictionary!["Thoroughfare"] as? NSString {
-                                    print("Thoroughfare :- \(thoroughfare)")
-
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        })
-    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
