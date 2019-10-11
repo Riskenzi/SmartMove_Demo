@@ -367,7 +367,6 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         
         mapView.clear()
         loadingPoint()
-      //  callConfige()
         configeSliderUpView(controller: { SliderUpView.instantiate() })
         
     }
