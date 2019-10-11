@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import FittedSheets
 class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
     @IBOutlet weak var ViewCars: UIView!
     ///view info
@@ -126,7 +127,9 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         CarLiveViewRouting.isHidden = true
         //MARK: buttoncardetail hide
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+//        configeSliderUpView(controller: { SliderUpView.instantiate() })
+    }
     
     func loadingPoint(){
       //MARK: loading point
@@ -250,6 +253,8 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
             self.distantion.text = CarDist
              AnimationManager(View: self.ViewCars, Button: self.ButtonCarDetail, mode: "show", BarView: self.StatusBarMaskView, RoutingView: self.CarLiveViewRouting)
         }
+        
+       
     }//MARK: Show popapView
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
@@ -362,6 +367,8 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         
         mapView.clear()
         loadingPoint()
+      //  callConfige()
+        configeSliderUpView(controller: { SliderUpView.instantiate() })
         
     }
 }

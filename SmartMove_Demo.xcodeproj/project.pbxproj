@@ -25,6 +25,9 @@
 		F443F686234E01DE002877D7 /* Extension_GoogleMaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = F443F685234E01DE002877D7 /* Extension_GoogleMaps.swift */; };
 		F46ABCCC2347614900DC4B78 /* RounterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F46ABCCB2347614900DC4B78 /* RounterView.xib */; };
 		F46ABCD0234765B100DC4B78 /* RounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46ABCCF234765B100DC4B78 /* RounterView.swift */; };
+		F47677732350889F00C2C297 /* SliderUpView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47677722350889F00C2C297 /* SliderUpView.storyboard */; };
+		F4767775235088B000C2C297 /* SliderUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4767774235088B000C2C297 /* SliderUpView.swift */; };
+		F4B327D5235095CA00416433 /* UIClosureActionClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B327D4235095CA00416433 /* UIClosureActionClosure.swift */; };
 		F4EF004F233CC69400F3E4F9 /* GoogleMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EF004E233CC69400F3E4F9 /* GoogleMap.swift */; };
 		F4EF0051233CCDE000F3E4F9 /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = F4EF0050233CCDE000F3E4F9 /* style.json */; };
 /* End PBXBuildFile section */
@@ -52,6 +55,9 @@
 		F443F685234E01DE002877D7 /* Extension_GoogleMaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension_GoogleMaps.swift; sourceTree = "<group>"; };
 		F46ABCCB2347614900DC4B78 /* RounterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RounterView.xib; sourceTree = "<group>"; };
 		F46ABCCF234765B100DC4B78 /* RounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RounterView.swift; sourceTree = "<group>"; };
+		F47677722350889F00C2C297 /* SliderUpView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SliderUpView.storyboard; sourceTree = "<group>"; };
+		F4767774235088B000C2C297 /* SliderUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderUpView.swift; sourceTree = "<group>"; };
+		F4B327D4235095CA00416433 /* UIClosureActionClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIClosureActionClosure.swift; sourceTree = "<group>"; };
 		F4EF004E233CC69400F3E4F9 /* GoogleMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMap.swift; sourceTree = "<group>"; };
 		F4EF0050233CCDE000F3E4F9 /* style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,9 +146,20 @@
 			path = DataManager;
 			sourceTree = "<group>";
 		};
+		F47677712350884800C2C297 /* SliderUpView */ = {
+			isa = PBXGroup;
+			children = (
+				F47677722350889F00C2C297 /* SliderUpView.storyboard */,
+				F4767774235088B000C2C297 /* SliderUpView.swift */,
+				F4B327D4235095CA00416433 /* UIClosureActionClosure.swift */,
+			);
+			path = SliderUpView;
+			sourceTree = "<group>";
+		};
 		F4EF004D233CC46B00F3E4F9 /* Map Google */ = {
 			isa = PBXGroup;
 			children = (
+				F47677712350884800C2C297 /* SliderUpView */,
 				F4EF004E233CC69400F3E4F9 /* GoogleMap.swift */,
 				F443F685234E01DE002877D7 /* Extension_GoogleMaps.swift */,
 				F4EF0050233CCDE000F3E4F9 /* style.json */,
@@ -224,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F46ABCCC2347614900DC4B78 /* RounterView.xib in Resources */,
+				F47677732350889F00C2C297 /* SliderUpView.storyboard in Resources */,
 				F4EF0051233CCDE000F3E4F9 /* style.json in Resources */,
 				F4040B7C233B5040009D3F3C /* mapstyle.json in Resources */,
 				F4040B80233B56C8009D3F3C /* point.json in Resources */,
@@ -305,10 +323,12 @@
 				F4040B84233B65DB009D3F3C /* PinLocations.swift in Sources */,
 				F4EF004F233CC69400F3E4F9 /* GoogleMap.swift in Sources */,
 				F4040B87233B8034009D3F3C /* DataManager.swift in Sources */,
+				F4767775235088B000C2C297 /* SliderUpView.swift in Sources */,
 				F4040B63233B4899009D3F3C /* AppDelegate.swift in Sources */,
 				F443F686234E01DE002877D7 /* Extension_GoogleMaps.swift in Sources */,
 				F42BB335233DFAF3006CD20C /* UIImage+Extension.swift in Sources */,
 				F46ABCD0234765B100DC4B78 /* RounterView.swift in Sources */,
+				F4B327D5235095CA00416433 /* UIClosureActionClosure.swift in Sources */,
 				F4040B78233B4A6A009D3F3C /* Map.swift in Sources */,
 				F4040B7A233B4CF4009D3F3C /* SceneDelegate.swift in Sources */,
 			);

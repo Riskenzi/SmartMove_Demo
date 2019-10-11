@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2vZ-lK-hyS">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Slider Up View-->
+        <scene sceneID="oFE-hN-UfL">
+            <objects>
+                <viewController storyboardIdentifier="sheet1" id="2vZ-lK-hyS" customClass="SliderUpView" customModule="SmartMove_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="f71-td-bia">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a label at the top" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1rj-s4-bLF">
+                                <rect key="frame" x="0.0" y="1" width="375" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a label at the bottom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UNk-aN-sfv">
+                                <rect key="frame" x="0.0" y="645" width="375" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test Bottom Sheet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uS4-01-WIi">
+                                <rect key="frame" x="61" y="313" width="253.5" height="41"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="34"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UNk-aN-sfv" firstAttribute="trailing" secondItem="Wbo-ff-gbj" secondAttribute="trailing" id="1LY-OM-LWE"/>
+                            <constraint firstItem="Wbo-ff-gbj" firstAttribute="trailing" secondItem="1rj-s4-bLF" secondAttribute="trailing" id="1Ro-7f-POB"/>
+                            <constraint firstItem="Wbo-ff-gbj" firstAttribute="bottom" secondItem="UNk-aN-sfv" secondAttribute="bottom" constant="1" id="Abk-KC-dNo"/>
+                            <constraint firstItem="uS4-01-WIi" firstAttribute="centerY" secondItem="Wbo-ff-gbj" secondAttribute="centerY" id="D6M-zK-taN"/>
+                            <constraint firstItem="1rj-s4-bLF" firstAttribute="leading" secondItem="Wbo-ff-gbj" secondAttribute="leading" id="L5s-57-jwr"/>
+                            <constraint firstItem="UNk-aN-sfv" firstAttribute="top" relation="greaterThanOrEqual" secondItem="1rj-s4-bLF" secondAttribute="bottom" constant="1" id="M23-H4-iub"/>
+                            <constraint firstItem="1rj-s4-bLF" firstAttribute="top" secondItem="Wbo-ff-gbj" secondAttribute="top" constant="1" id="St8-8C-A83"/>
+                            <constraint firstItem="uS4-01-WIi" firstAttribute="centerX" secondItem="Wbo-ff-gbj" secondAttribute="centerX" id="UKx-Bu-KrP"/>
+                            <constraint firstItem="UNk-aN-sfv" firstAttribute="leading" secondItem="Wbo-ff-gbj" secondAttribute="leading" id="Uj8-Hv-fJL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Wbo-ff-gbj"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vPq-u9-jJL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-172.46376811594203" y="52.901785714285715"/>
+        </scene>
+    </scenes>
+</document>

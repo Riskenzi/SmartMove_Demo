@@ -8,7 +8,7 @@
 
 import UIKit
 import GoogleMaps
-
+import FittedSheets
 extension GoogleMap {
     
     //MARK:  Set the map style by passing the URL of the local file.
@@ -240,5 +240,40 @@ extension GoogleMap {
                 root.map = nil
             }
         }
+    }
+    
+    
+    func callConfige(){
+        let controller = SheetViewController(controller: UIStoryboard(name: "SliderUpView", bundle: nil).instantiateViewController(withIdentifier: "sheet1"))
+               controller.blurBottomSafeArea = false
+               self.present(controller, animated: false, completion: nil)
+    }
+    
+    
+    func configeSliderUpView( controller: @escaping () -> UIViewController ){
+  
+        let controller = controller()
+        let text = "250,650"
+        let stringSizes = text.components(separatedBy: ",")
+        var sizes: [SheetSize] = stringSizes.compactMap({
+            Int($0.trimmingCharacters(in: .whitespacesAndNewlines))
+        }).map({
+            SheetSize.fixed(CGFloat($0))
+        })
+        sizes.append(.fullScreen)
+        let sheetController = SheetViewController(controller: controller, sizes: sizes)
+        sheetController.blurBottomSafeArea = true
+        sheetController.dismissOnBackgroundTap = true
+        sheetController.extendBackgroundBehindHandle = true
+        sheetController.topCornersRadius = true ? 50 : 0
+        
+        sheetController.willDismiss = { _ in
+            print("Will dismiss ")
+        }
+        sheetController.didDismiss = { _ in
+            print("Will dismiss")
+        }
+        self.present(sheetController, animated: false, completion: nil)
+        
     }
 }
