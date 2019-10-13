@@ -1,12 +1,12 @@
 PODS:
   - FittedSheets (1.4.5)
-  - GoogleMaps (3.4.0):
-    - GoogleMaps/Maps (= 3.4.0)
-  - GoogleMaps/Base (3.4.0)
-  - GoogleMaps/Maps (3.4.0):
+  - GoogleMaps (3.5.0):
+    - GoogleMaps/Maps (= 3.5.0)
+  - GoogleMaps/Base (3.5.0)
+  - GoogleMaps/Maps (3.5.0):
     - GoogleMaps/Base
-  - GooglePlaces (3.4.0):
-    - GoogleMaps/Base (= 3.4.0)
+  - GooglePlaces (3.5.0):
+    - GoogleMaps/Base (= 3.5.0)
   - MapKitGoogleStyler (0.1.1)
 
 DEPENDENCIES:
@@ -24,8 +24,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   FittedSheets: 7f754c9f6fb4ea330cbc57c652b594255f2a6819
-  GoogleMaps: 67f4a604f80dd6a22d09c2a507a3a395b9f23060
-  GooglePlaces: 7547289e3fffc8980f4a027be99888e29d59b15d
+  GoogleMaps: 32ca02de09de357a10ac773f2c70f1986751392d
+  GooglePlaces: be6f19fe8aa6ff0b5bcccfa1b8805cc977ea1450
   MapKitGoogleStyler: 8efdceb664fc1748a62a9e3b50a34b67a34247bc
 
 PODFILE CHECKSUM: 1d51425498d7e285dec7ef103e5f8bff541f1e33
