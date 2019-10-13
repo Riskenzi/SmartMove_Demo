@@ -16,12 +16,11 @@ DEPENDENCIES:
   - MapKitGoogleStyler
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
+    - FittedSheets
     - GoogleMaps
     - GooglePlaces
     - MapKitGoogleStyler
-  trunk:
-    - FittedSheets
 
 SPEC CHECKSUMS:
   FittedSheets: 7f754c9f6fb4ea330cbc57c652b594255f2a6819
