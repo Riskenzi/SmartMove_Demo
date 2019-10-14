@@ -266,13 +266,13 @@ extension GoogleMap {
         sheetController.dismissOnBackgroundTap = true
         sheetController.extendBackgroundBehindHandle = true
         sheetController.topCornersRadius = true ? 50 : 0
-        
         sheetController.willDismiss = { _ in
             print("Will dismiss ")
         }
         sheetController.didDismiss = { _ in
             print("Will dismiss")
         }
+        
         self.present(sheetController, animated: false, completion: nil)
         
     }

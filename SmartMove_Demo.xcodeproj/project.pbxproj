@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		26F87F274C612BC988C1243A /* Pods_SmartMove_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3F86EDBEA6D5C316AFDB77A /* Pods_SmartMove_Demo.framework */; };
+		58E91F4C23547DBF00AE873B /* MMSlidingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E91F4B23547DBF00AE873B /* MMSlidingButton.swift */; };
 		F4040B63233B4899009D3F3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4040B62233B4899009D3F3C /* AppDelegate.swift */; };
 		F4040B67233B4899009D3F3C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4040B66233B4899009D3F3C /* ViewController.swift */; };
 		F4040B6A233B4899009D3F3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4040B68233B4899009D3F3C /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		58E91F4B23547DBF00AE873B /* MMSlidingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSlidingButton.swift; sourceTree = "<group>"; };
 		87453B48DE9701353DAAE172 /* Pods-SmartMove_Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartMove_Demo.release.xcconfig"; path = "Target Support Files/Pods-SmartMove_Demo/Pods-SmartMove_Demo.release.xcconfig"; sourceTree = "<group>"; };
 		C3F86EDBEA6D5C316AFDB77A /* Pods_SmartMove_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartMove_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD75BE82AD72DF99062CE3D2 /* Pods-SmartMove_Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmartMove_Demo.debug.xcconfig"; path = "Target Support Files/Pods-SmartMove_Demo/Pods-SmartMove_Demo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -80,6 +82,14 @@
 				C3F86EDBEA6D5C316AFDB77A /* Pods_SmartMove_Demo.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		58E91F4A23547D9400AE873B /* Custom UI */ = {
+			isa = PBXGroup;
+			children = (
+				58E91F4B23547DBF00AE873B /* MMSlidingButton.swift */,
+			);
+			path = "Custom UI";
 			sourceTree = "<group>";
 		};
 		F4040B56233B4898009D3F3C = {
@@ -149,6 +159,7 @@
 		F47677712350884800C2C297 /* SliderUpView */ = {
 			isa = PBXGroup;
 			children = (
+				58E91F4A23547D9400AE873B /* Custom UI */,
 				F47677722350889F00C2C297 /* SliderUpView.storyboard */,
 				F4767774235088B000C2C297 /* SliderUpView.swift */,
 				F4B327D4235095CA00416433 /* UIClosureActionClosure.swift */,
@@ -321,6 +332,7 @@
 				F4040B7E233B55B6009D3F3C /* MapPin.swift in Sources */,
 				F4040B89233B976C009D3F3C /* CarItem.swift in Sources */,
 				F4040B84233B65DB009D3F3C /* PinLocations.swift in Sources */,
+				58E91F4C23547DBF00AE873B /* MMSlidingButton.swift in Sources */,
 				F4EF004F233CC69400F3E4F9 /* GoogleMap.swift in Sources */,
 				F4040B87233B8034009D3F3C /* DataManager.swift in Sources */,
 				F4767775235088B000C2C297 /* SliderUpView.swift in Sources */,
