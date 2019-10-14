@@ -8,14 +8,24 @@
 
 import UIKit
 import FittedSheets
-class SliderUpView: UIViewController {
+class SliderUpView: UIViewController,SlideButtonDelegate {
+    func buttonStatus(status: String, sender: MMSlidingButton) {
+        let alertController = UIAlertController(title: "", message: "Done!", preferredStyle: .alert)
+        let doneAction = UIAlertAction(title: "Okay", style: .default) { (action) in
+            sender.reset()
+        }
+        alertController.addAction(doneAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
 
-        
+    
+    @IBOutlet weak var SliderViewUnlock: MMSlidingButton!
+    
+
         override func viewDidLoad() {
                super.viewDidLoad()
             self.sheetViewController?.handleColor = .white
-           // self.sheetViewController?.overlayColor = .white
-//               self.sheetViewController?.overlayColor = UIColor(red: 0.933, green: 0.314, blue: 0.349, alpha: 0.3)
+            self.SliderViewUnlock.delegate = self
            }
            
            static func instantiate() -> SliderUpView {
@@ -23,9 +33,6 @@ class SliderUpView: UIViewController {
            }
 
         // Do any additional setup after loading the view.
-    
-    
-
     /*
     // MARK: - Navigation
 

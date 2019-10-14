@@ -99,6 +99,7 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
         super.viewDidLoad()
         MapApple.loadJsonFile()
         loadingPoint()
+        
     }//MARK: viewDidLoad
     
     override func viewWillAppear(_ animated: Bool) {

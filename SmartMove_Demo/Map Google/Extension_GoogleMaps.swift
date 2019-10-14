@@ -253,7 +253,8 @@ extension GoogleMap {
     func configeSliderUpView( controller: @escaping () -> UIViewController ){
   
         let controller = controller()
-        let text = "250,650"
+       // let text = "250,650"
+        let text = "650"
         let stringSizes = text.components(separatedBy: ",")
         var sizes: [SheetSize] = stringSizes.compactMap({
             Int($0.trimmingCharacters(in: .whitespacesAndNewlines))
