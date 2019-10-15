@@ -214,6 +214,9 @@
                                                 <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="DamageButton:" destination="KF9-sb-2aX" eventType="touchUpInside" id="jOi-wk-43G"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>

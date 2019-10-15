@@ -32,7 +32,16 @@ class SliderUpView: UIViewController,SlideButtonDelegate {
                return UIStoryboard(name: "SliderUpView", bundle: nil).instantiateInitialViewController() as! SliderUpView
            }
 
-        // Do any additional setup after loading the view.
+    @IBAction func DamageButton(_ sender: Any) {
+        
+     
+       let storyboard = UIStoryboard(name: "DamageReport", bundle: nil)
+        let secondViewController = storyboard.instantiateViewController(withIdentifier: "DamageReportVC") as! DamageReportVC
+        
+        present(secondViewController, animated: true, completion: nil)
+       
+    }
+    // Do any additional setup after loading the view.
     /*
     // MARK: - Navigation
 
