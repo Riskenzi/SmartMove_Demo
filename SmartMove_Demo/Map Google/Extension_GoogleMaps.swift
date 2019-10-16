@@ -272,6 +272,8 @@ extension GoogleMap {
         }
         sheetController.didDismiss = { _ in
             print("Will dismiss")
+            self.AnimationManager(View: self.CarLiveView, Button: self.ButtonCarDetail, mode: "deleteLive", BarView: self.StatusBarMaskView, RoutingView: self.CarLiveViewRouting)
+            self.cleaningMap()
         }
         
         self.present(sheetController, animated: false, completion: nil)

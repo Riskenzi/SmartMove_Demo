@@ -21,7 +21,7 @@ class SliderUpView: UIViewController,SlideButtonDelegate {
     
     @IBOutlet weak var SliderViewUnlock: MMSlidingButton!
     
-
+ 
         override func viewDidLoad() {
                super.viewDidLoad()
             self.sheetViewController?.handleColor = .white

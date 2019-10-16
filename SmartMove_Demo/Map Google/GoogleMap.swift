@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMaps
 import FittedSheets
+import CoreLocation
 class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
     @IBOutlet weak var ViewCars: UIView!
     ///view info
@@ -94,11 +95,17 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
     let MapApple : Map = Map()
     let marker_img = UIImage(named: "car")
     let car_img = UIImage(named: "marker")
+    
+    var observerInstance = Observer()
+    var testChambers = TestChambers()
+    var timer = Timer()
     public var polylineArray:[GMSCircle] = [GMSCircle]() //global variable
     override func viewDidLoad() {
         super.viewDidLoad()
         MapApple.loadJsonFile()
         loadingPoint()
+       
+        
         
     }//MARK: viewDidLoad
     
@@ -355,20 +362,48 @@ class GoogleMap: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
                     DataManager.sharedCenter.CarLiveRoutingLatitude = marker.position.latitude
                     DataManager.sharedCenter.CarLiveRoutingLongtitude = marker.position.longitude
                 }
+                   // testChambers.observer = observerInstance
+                 //   testChambers.testChamberNumber += 1
+   
+           
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(runTimeCode), userInfo: nil, repeats: true)
+
+        
         }
+
+
+  @objc  func runTimeCode(){
+        NSLog("counting..")
+    let userLocation = CLLocation(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
+    let carLocation = CLLocation(latitude: DataManager.sharedCenter.CarLiveRoutingLatitude!, longitude: DataManager.sharedCenter.CarLiveRoutingLongtitude!)
+    
+    let distance = userLocation.distance(from: carLocation) // result is in meters
+    print(distance)
+    if distance <= 15 {
+        configeSliderUpView(controller: { SliderUpView.instantiate() })
+        timer.invalidate()
+        cleaningMap()
+    }
+    }
+    
+    func cleaningMap()
+    {
+        if self.mapView.selectedMarker != nil{
+                  self.mapView.selectedMarker!.icon = drawImageWithProfilePic(pp: marker_img!, image: car_img!)
+                  self.mapView.selectedMarker = nil
+                  self.removePolylinePath()
+              }
+              timer.invalidate()
+              mapView.clear()
+              loadingPoint()
+            
+    }
     
     @IBAction func CarViewTabClose(_ sender: Any) {
   
         AnimationManager(View: self.CarLiveView, Button: self.ButtonCarDetail, mode: "deleteLive", BarView: self.StatusBarMaskView, RoutingView: self.CarLiveViewRouting)
-        if self.mapView.selectedMarker != nil{
-            self.mapView.selectedMarker!.icon = drawImageWithProfilePic(pp: marker_img!, image: car_img!)
-            self.mapView.selectedMarker = nil
-            self.removePolylinePath()
-        }
-        
-        mapView.clear()
-        loadingPoint()
-        configeSliderUpView(controller: { SliderUpView.instantiate() })
+            cleaningMap()
         
     }
 }

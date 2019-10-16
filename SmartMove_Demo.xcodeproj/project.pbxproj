@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		26F87F274C612BC988C1243A /* Pods_SmartMove_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3F86EDBEA6D5C316AFDB77A /* Pods_SmartMove_Demo.framework */; };
+		58647DDF2357205C002E0D99 /* NotifyCarCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58647DDE2357205C002E0D99 /* NotifyCarCheck.swift */; };
 		58670B102355C7F300F10C81 /* DamageReport.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58670B0F2355C7F300F10C81 /* DamageReport.storyboard */; };
 		58670B122355CA5E00F10C81 /* DamageReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58670B112355CA5E00F10C81 /* DamageReportVC.swift */; };
 		58670B142355D8F100F10C81 /* DamageReportMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58670B132355D8F100F10C81 /* DamageReportMode.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		58647DDE2357205C002E0D99 /* NotifyCarCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyCarCheck.swift; sourceTree = "<group>"; };
 		58670B0F2355C7F300F10C81 /* DamageReport.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DamageReport.storyboard; sourceTree = "<group>"; };
 		58670B112355CA5E00F10C81 /* DamageReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamageReportVC.swift; sourceTree = "<group>"; };
 		58670B132355D8F100F10C81 /* DamageReportMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DamageReportMode.swift; sourceTree = "<group>"; };
@@ -88,6 +90,14 @@
 				C3F86EDBEA6D5C316AFDB77A /* Pods_SmartMove_Demo.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		58647DDD2357202C002E0D99 /* Observer */ = {
+			isa = PBXGroup;
+			children = (
+				58647DDE2357205C002E0D99 /* NotifyCarCheck.swift */,
+			);
+			path = Observer;
 			sourceTree = "<group>";
 		};
 		58670B0E2355C7B000F10C81 /* DamageReport */ = {
@@ -186,6 +196,7 @@
 		F4EF004D233CC46B00F3E4F9 /* Map Google */ = {
 			isa = PBXGroup;
 			children = (
+				58647DDD2357202C002E0D99 /* Observer */,
 				58670B0E2355C7B000F10C81 /* DamageReport */,
 				F47677712350884800C2C297 /* SliderUpView */,
 				F4EF004E233CC69400F3E4F9 /* GoogleMap.swift */,
@@ -350,6 +361,7 @@
 				F4040B7E233B55B6009D3F3C /* MapPin.swift in Sources */,
 				F4040B89233B976C009D3F3C /* CarItem.swift in Sources */,
 				58670B122355CA5E00F10C81 /* DamageReportVC.swift in Sources */,
+				58647DDF2357205C002E0D99 /* NotifyCarCheck.swift in Sources */,
 				F4040B84233B65DB009D3F3C /* PinLocations.swift in Sources */,
 				58E91F4C23547DBF00AE873B /* MMSlidingButton.swift in Sources */,
 				F4EF004F233CC69400F3E4F9 /* GoogleMap.swift in Sources */,
